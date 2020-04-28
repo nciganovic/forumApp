@@ -14,10 +14,10 @@
             <a class="nav-link text-light" href="#">Search</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link text-light" href="#">Login</a>
+            <a class="nav-link text-light" href="index.php?page=login">Login</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link text-light" href="#">Register</a>
+            <a class="nav-link text-light" href="index.php?page=register">Register</a>
         </li>
         </ul>
     </div>
