@@ -1,0 +1,9 @@
+Pages for user: 
+    1. index
+    2. login 
+    3. register 
+    4. search          
+    5. post
+    6. category
+    7. mostrecent
+    8. topusers
