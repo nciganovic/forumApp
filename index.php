@@ -10,11 +10,11 @@
         
         if($_GET["page"] == "login"){
             
-            require_once "views/user/login.php";
+            require_once "views/users/login.php";
         
         }elseif($_GET["page"] == "register"){
 
-            require_once "views/user/register.php";
+            require_once "views/users/register.php";
         
         }
     
