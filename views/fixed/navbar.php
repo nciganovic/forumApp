@@ -11,13 +11,13 @@
             <a class="nav-link text-light" href="index.php">Home</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link text-light" href="#">Search</a>
+            <a class="nav-link text-light" href="index.php?page=search">Search</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php?page=login">Login</a>
+            <a class="nav-link text-light" href="index.php?page=login&width=1">Login</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php?page=register">Register</a>
+            <a class="nav-link text-light" href="index.php?page=register&width=1">Register</a>
         </li>
         </ul>
     </div>

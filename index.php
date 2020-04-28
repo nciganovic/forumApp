@@ -5,16 +5,24 @@
     require_once "views/fixed/head.php";
     require_once "views/fixed/navbar.php";
 
-    if(!isset($_GET["page"])){
-        require_once "views/fixed/content.php";
-    }else{
+    //Pages that dont have side bar and take 100% width
+    if(isset($_GET["page"]) && isset($_GET["width"])){
+        
         if($_GET["page"] == "login"){
             
             require_once "views/user/login.php";
         
         }elseif($_GET["page"] == "register"){
+
             require_once "views/user/register.php";
+        
         }
+    
+    //Pages that user sidebar   
+    }else{
+
+        require_once "views/fixed/content.php";
+
     }
     
     require_once "views/fixed/footer.php";
