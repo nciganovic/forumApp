@@ -9,7 +9,11 @@
         require_once "views/fixed/content.php";
     }else{
         if($_GET["page"] == "login"){
+            
             require_once "views/user/login.php";
+        
+        }elseif($_GET["page"] == "register"){
+            require_once "views/user/register.php";
         }
     }
     
