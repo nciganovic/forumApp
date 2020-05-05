@@ -19,7 +19,7 @@ $mail->SMTPSecure = "ssl";
 
 //Email Settings
 $mail->isHTML(true);
-$mail->setFrom($email, $username);
+$mail->setFrom($email, "Forum team");
 $mail->addAddress($email);
 $mail->Subject = "Confirm your email for Forum";
 $mail->Body = $message;
