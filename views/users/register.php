@@ -1,32 +1,36 @@
+<?php
+session_start();
+?>
+
 <div class="container">
     <div class="row mt-3">
         <div class="col-12">
             <h1 class="text-center">Register</h1>
         </div>
         <div class="col-8 m-auto">
-            <form>
+            <form method="POST">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
-                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username">
+                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp" name="username" placeholder="Enter username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" id="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input type="email" id="email" class="form-control" aria-describedby="emailHelp" name="email" placeholder="Enter email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" id="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" id="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Repeat password</label>
-                    <input type="password" id="password2" class="form-control" id="exampleInputPassword1" placeholder="Repeat password">
+                    <input type="password" id="password2" class="form-control" name="password2" placeholder="Repeat password">
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-primary">Submit</button>
             </form>
 
-            <div class="errors mt-3">
+            <div class="message mt-3">
                 
             </div>
         </div>

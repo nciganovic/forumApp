@@ -2,6 +2,7 @@ $(document).ready(function(){
     console.log("register.js");
 
     $(".btn").click(function(){
+
         var username = $("#username").val();
         var email = $("#email").val();
         var psw = $("#password").val();
@@ -18,34 +19,57 @@ $(document).ready(function(){
             isValidPsw = false;
         }
 
-        $(".errors").html("");
+        $(".message").html("");
         $(".server-erros").html("");
-        if(!isValidUsername || !isValidEmail || !isValidPsw){
+        if(!isValidUsername || !isValidEmail || !isValidPsw || psw != pswR){
             if(!isValidUsername){
-                $(".errors").append("<p class='text-danger text-center'>Username is in wrong format. Valid formats are: user_15 , user.15 , user15 .</p>");
+                $(".message").append("<p class='text-danger text-center'>Username is in wrong format. Valid formats are: user_15 , user.15 , user15 .</p>");
             }
 
             if(!isValidEmail){
-                $(".errors").append("<p class='text-danger text-center'>Email is in wrong format.</p>");
+                $(".message").append("<p class='text-danger text-center'>Email is in wrong format.</p>");
             }
 
             if(!isValidPsw){
-                $(".errors").append("<p class='text-danger text-center'>Password is invalid. Must be between 5 and 25 characters.</p>");
+                $(".message").append("<p class='text-danger text-center'>Password is invalid. Must be between 5 and 25 characters.</p>");
             }
 
             if(psw != pswR){
-                $(".errors").append("<p class='text-danger text-center'>Passwords are not identical.</p>");
+                $(".message").append("<p class='text-danger text-center'>Passwords are not identical.</p>");
             }
             
-            return false;
         }
-
-        var checkbox = $("#customCheck").is(':checked');
-        if(checkbox){
-            localStorage.setItem("email", email);
-            localStorage.setItem("psw", psw);
+        else{   
+            $.ajax({
+                url:"models/user/insertuser.php",
+                method:"post",
+                data:{
+                    username:username,
+                    email:email,
+                    password:psw,
+                    password2:pswR
+                },
+                dataType:"json",
+                success:function(data){
+                    console.log(data);
+                    
+                    if(data.result == "0"){
+                        $(".message").html(data.msg);
+                    }
+                    else{
+                        $(".message").html(data.msg);
+                    }
+                    
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            })
         }
         
-        return true;
+        
+    
+        
+    
     })
 })
