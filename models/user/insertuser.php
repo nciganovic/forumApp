@@ -65,12 +65,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                   $message = "Here is the link for confirmation: ".$fullUrl;
 
-                  #mail($email, "Confirm your password.", $message);
+                  require_once "../../sendemail.php";
 
-                  echo json_encode([
+                  /*echo json_encode([
                     "msg" => "Account succesfully created! We sent you a confirmation link to your email. Click on it and you verification is complete.", 
                     "result" => "1"
-                  ]);
+                  ]);*/
                 }
                 else{
                   echo json_encode([
@@ -132,5 +132,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     }
   }
-
 ?>
