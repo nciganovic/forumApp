@@ -58,6 +58,11 @@ $(document).ready(function(){
                     }
                     else{
                         $(".message").html(data.msg);
+                        
+                        $("#username").val("");
+                        $("#email").val("");
+                        $("#password").val("");
+                        $("#password2").val("");
                     }
                     
                 },

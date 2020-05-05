@@ -32,7 +32,7 @@ if($mail->send()){
 }else{
     echo json_encode([
         "msg" => "Email sent failed.", 
-        "result" => "1"
+        "result" => "0"
     ]);
 }
 
