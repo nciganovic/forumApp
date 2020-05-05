@@ -25,6 +25,13 @@
                 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+
+            <div class="errors mt-3">
+                
+            </div>
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="assets/js/register.js"></script>
