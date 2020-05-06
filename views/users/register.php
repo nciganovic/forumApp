@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <div class="container">
     <div class="row mt-3">
         <div class="col-12">
@@ -27,7 +23,7 @@ session_start();
                     <input type="password" id="password2" class="form-control" name="password2" placeholder="Repeat password">
                 </div>
                 
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" id="submit" class="btn btn-primary">Submit</button>
             </form>
 
             <div class="message mt-3">

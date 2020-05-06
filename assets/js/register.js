@@ -40,6 +40,17 @@ $(document).ready(function(){
             
         }
         else{   
+            //Disable button for a few seconds
+            var fewSeconds = 4;
+            var btn = $(".btn");
+            btn.prop('disabled', true);
+            setTimeout(function(){
+                btn.prop('disabled', false);
+            }, fewSeconds*1000);
+
+            $(".message").html("<p class='text-center'>Sending...</p>");
+            
+            //AJAX request
             $.ajax({
                 url:"models/user/insertuser.php",
                 method:"post",
