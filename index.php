@@ -16,9 +16,9 @@
 
             require_once "views/users/register.php";
         
-        }elseif($_GET["page"] == "auth"){
+        }elseif($_GET["page"] == "validate"){
 
-            require_once "views/users/auth.php";
+            require_once "views/users/validate.php";
 
         }
     
