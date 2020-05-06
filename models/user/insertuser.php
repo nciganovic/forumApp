@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   $rand = bin2hex(random_bytes(32));
                   $pswHash = password_hash($password, PASSWORD_DEFAULT);
 
-                  $link = "http://".$_SERVER["HTTP_HOST"]."/newportfolio/auth.php";
+                  $link = "http://".$_SERVER["HTTP_HOST"]."/forumApp/index.php?page=auth&width=1";
 
                   try{
                     $sql = "INSERT INTO users (username, password, isverified, role, email, randnum) VALUES(:username, :password, 0, 0, :email, :randnum)";
@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                   $id = $getId[0]["id"];
 
-                  $fullUrl = $link."?id=".$id."&key=".$rand;
+                  $fullUrl = $link."&id=".$id."&key=".$rand;
 
                   $message = "Here is the link for confirmation: ".$fullUrl;
 

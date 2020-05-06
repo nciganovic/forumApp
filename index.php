@@ -16,6 +16,10 @@
 
             require_once "views/users/register.php";
         
+        }elseif($_GET["page"] == "auth"){
+
+            require_once "views/users/auth.php";
+
         }
     
     //Pages that user sidebar   
