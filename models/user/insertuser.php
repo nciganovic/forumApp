@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($isUsernameValid){
           if($isEmailValid){
 
-            if(strlen($password) > 4 && strlen($password) <= 25){
+            if(strlen($password) > 4 && strlen($password) < 26){
               if($password == $passwordR){
 
                 $sql = "SELECT username, email FROM users WHERE username=:username OR email=:e";
@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   $rand = bin2hex(random_bytes(32));
                   $pswHash = password_hash($password, PASSWORD_DEFAULT);
 
-                  $link = "http://".$_SERVER["HTTP_HOST"]."/forumApp/index.php?page=auth&width=1";
+                  $link = "http://".$_SERVER["HTTP_HOST"]."/forumApp/index.php?page=validate&width=1";
 
                   try{
                     $sql = "INSERT INTO users (username, password, isverified, role, email, randnum) VALUES(:username, :password, 0, 0, :email, :randnum)";

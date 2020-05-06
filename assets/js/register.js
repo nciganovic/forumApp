@@ -15,12 +15,12 @@ $(document).ready(function(){
         var isValidEmail = emailRgx.test(email);
 
         var isValidPsw = true;
-        if(psw.length > 25 || psw.length <= 4 || pswR.length > 25 || pswR.length <= 4){
+        if(psw.length > 25 || psw.length < 5 || pswR.length > 25 || pswR.length < 5){
             isValidPsw = false;
         }
 
         $(".message").html("");
-        $(".server-erros").html("");
+
         if(!isValidUsername || !isValidEmail || !isValidPsw || psw != pswR){
             if(!isValidUsername){
                 $(".message").append("<p class='text-danger text-center'>Username is in wrong format. Valid formats are: user_15 , user.15 , user15 .</p>");
