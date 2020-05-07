@@ -7,3 +7,4 @@ Pages for user:
     6. category
     7. mostrecent
     8. topusers
+    9. createpost
