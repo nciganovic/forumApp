@@ -13,12 +13,21 @@
         <li class="nav-item active">
             <a class="nav-link text-light" href="index.php?page=search">Search</a>
         </li>
-        <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php?page=login&width=1">Login</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php?page=register&width=1">Register</a>
-        </li>
+        <?php if(!isset($_SESSION["role"])): ?>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="index.php?page=login&width=1">Login</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="index.php?page=register&width=1">Register</a>
+            </li>
+        <?php else: ?>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="index.php?page=register&width=1"><?= $_SESSION["username"] ?></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="models/user/logout.php">Logout</a>
+            </li>
+        <?php endif ?>
         </ul>
     </div>
   </div>
