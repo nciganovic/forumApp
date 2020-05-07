@@ -3,17 +3,17 @@ require_once "../../config/connection.php";
 
 function test_input($data) {
   $data = trim($data);
-  $data = stripslashes($data);
+  $data = addslashes($data);
   return $data;
 }
-
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST["username"]) && !empty($_POST["username"])){
       if(isset($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["password2"]) && isset($_POST["password2"])){
 
-        $username = test_input($_POST["username"]);
-        $email = test_input($_POST["email"]);
+        $username = trim($_POST["username"]);
+        $email = trim($_POST["email"]);
+        
         $password = test_input($_POST["password"]);
         $passwordR = test_input($_POST["password2"]);
 
@@ -32,8 +32,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $stmt->bindParam(":e", $email);
                 $stmt->execute();
 
-                
-                
                 if($stmt->rowCount() == 0){
                   $rand = bin2hex(random_bytes(32));
                   $pswHash = password_hash($password, PASSWORD_DEFAULT);
