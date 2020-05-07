@@ -21,6 +21,10 @@
 
             require_once "views/users/validate.php";
 
+        }elseif($_GET["page"] == "createpost"){
+
+            require_once "views/users/createpost.php";
+
         }
     
     //Pages that user sidebar   
