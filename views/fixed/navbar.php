@@ -22,7 +22,7 @@
             </li>
         <?php else: ?>
             <li class="nav-item active">
-                <a class="nav-link text-light" href="index.php?page=register&width=1"><?= $_SESSION["username"] ?></a>
+                <a class="nav-link text-light" href="index.php?page=profile&width=1"><?= $_SESSION["username"] ?></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link text-light" href="models/user/logout.php">Logout</a>
