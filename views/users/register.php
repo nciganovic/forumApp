@@ -1,3 +1,6 @@
+<?php 
+    require_once "models/user/redirect_auth.php";
+?>
 <div class="container">
     <div class="row mt-3">
         <div class="col-12">
