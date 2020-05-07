@@ -10,6 +10,7 @@
         return $data;
     }
 
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(isset($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["email"]) && !empty($_POST["password"])){
 
@@ -24,50 +25,76 @@
             $sql = "SELECT id, username, password, role FROM users WHERE email = :email AND isverified=1";
             
             if($stmt = $pdo->prepare($sql)){
+
                 $stmt->bindParam(":email", $email);
                 $stmt->execute();
                 if($stmt->rowCount() == 1){
                 $users = $stmt->fetchAll();
-                if(password_verify($password, $users[0]["password"])){
-                    
-                    session_start();
 
-                    // Store data in session variables
-                    $_SESSION["userid"] = $users[0]["id"];
-                    $_SESSION["role"] = $users[0]["role"];
-                    $_SESSION["username"] = $users[0]["username"];                            
+                    if(password_verify($password, $users[0]["password"])){
+
+                        // Store data in session variables
+                        $_SESSION["userid"] = $users[0]["id"];
+                        $_SESSION["role"] = $users[0]["role"];
+                        $_SESSION["username"] = $users[0]["username"];                            
+
+                        // Redirect depends on role
+                        if($users[0]["role"] == 1){
+                            echo(json_encode([
+                                "msg" => "Admin",
+                                "result" => "1"
+                            ]));
+                        }
+                        else{
+                            echo(json_encode([
+                                "msg" => "Basic",
+                                "result" => "1"
+                            ]));
+                        }
                         
-                    // Redirect depends on role
-                    if($users[0]["role"] == 1){
-                    header("location: admin/dashboard.php");
                     }
                     else{
-                    header("location: index.php");
+                        /*$_SESSION["message"] = "Password is invalid.";*/
+                        echo(json_encode([
+                            "msg" => "Password is invalid.",
+                            "result" => "0"
+                        ]));
                     }
-                    
                 }
                 else{
-                    $_SESSION["message"] = "Password is invalid.";
-                }
-                }
-                else{
-                $_SESSION["message"] = "Email doesn't exist.";
+                /*$_SESSION["message"] = "Email doesn't exist.";*/
+                    echo(json_encode([
+                        "msg" => "This email doesnt exist.",
+                        "result" => "0"
+                    ]));
                 }
             }
             }
             else{
-            $_SESSION["message"] = "Password is maximum 25 characters.";
+            /*$_SESSION["message"] = "Password is maximum 25 characters.";*/
+            echo(json_encode([
+                "msg" => "Password is maximum 25 characters.",
+                "result" => "0"
+            ]));
             }
 
         }
         else{
-            $_SESSION["message"] = "Email is in wrong format.";
+            /*$_SESSION["message"] = "Email is in wrong format.";*/
+            echo(json_encode([
+                "msg" => "Email is in wrong format.",
+                "result" => "0"
+            ]));
         }
         }
         else{
-        $_SESSION["message"] = "Email or password are not inserted.";
+        /*$_SESSION["message"] = "Email or password are not inserted.";*/
+        echo(json_encode([
+            "msg" => "Email or password are not inserted.",
+            "result" => "0"
+        ]));
         }
     }
-
+    
     ?>
 

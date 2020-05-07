@@ -34,7 +34,7 @@ $(document).ready(function(){
         else{
             //AJAX request
             $.ajax({
-                url:"models/user/insertuser.php",
+                url:"models/user/auth.php",
                 method:"post",
                 data:{
                     email:email,
@@ -48,10 +48,13 @@ $(document).ready(function(){
                         $(".message").html(data.msg);
                     }
                     else{
-                        $(".message").html(data.msg);
-
-                        $("#email").val("");
-                        $("#password").val("");
+                        if(data.msg == "Basic"){
+                            window.location.href = "http://localhost/forumApp/index.php";
+                        }
+                        else{
+                            window.location.href = "http://localhost/forumApp/admin.php";
+                        }
+                        
                     }
                     
                 },
