@@ -9,20 +9,20 @@
         <div class="col-8 m-auto">
             <form method="POST">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Title</label>
-                    <input type="email" id="email" class="form-control" aria-describedby="emailHelp" name="email" placeholder="Title of your post...">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" class="form-control" name="title" placeholder="Title of your post...">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description of your post..." rows="3"></textarea>
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" id="desc" placeholder="Description of your post..." rows="3"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Select category:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <label for="ctg">Select category:</label>
+                    <select class="form-control" id="ctg">
                         <option value="0">Select category</option>
                         <?php for($i = 0; $i < count($allCategories); $i++): ?>
-                            <option value="<?= $i + 1 ?>"> <?= $allCategories[$i]["name"] ?> </option>
+                            <option value="<?= $allCategories[$i]["name"] ?>"> <?= $allCategories[$i]["name"] ?> </option>
                         <?php endfor ?>
                     </select>
                 </div>
