@@ -1,4 +1,5 @@
 <?php 
+    require_once "models/user/redirect_unauth.php";
     require_once "models/categories/getCategories.php";
 ?>
 <div class="container-fluid">
@@ -22,7 +23,7 @@
                     <select class="form-control" id="ctg">
                         <option value="0">Select category</option>
                         <?php for($i = 0; $i < count($allCategories); $i++): ?>
-                            <option value="<?= $allCategories[$i]["name"] ?>"> <?= $allCategories[$i]["name"] ?> </option>
+                            <option value="<?= $allCategories[$i]["id"] ?>"> <?= $allCategories[$i]["name"] ?> </option>
                         <?php endfor ?>
                     </select>
                 </div>
