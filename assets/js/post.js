@@ -39,7 +39,27 @@ $(document).ready(function(){
             }
         }
         else{
-            console.log("Everything is fine.")
+            $.ajax({
+                url: "models/posts/insertpost.php",
+                method: "post",
+                dataType: "json",
+                data:{
+                    title:title,
+                    desc:desc,
+                    ctg:ctg
+                },
+                success: function(data){
+                    if(data.result == "0"){
+                        $(".message").append("<p class='text-center text-danger'>" + data.msg + "</p>");
+                    }
+                    else{
+                        window.location.href = "http://localhost/forumApp/index.php";
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            })
         }
 
 
