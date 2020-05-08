@@ -1,3 +1,6 @@
+<?php 
+    require_once "models/categories/getCategories.php";
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -17,11 +20,10 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Select category:</label>
                     <select class="form-control" id="exampleFormControlSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                        <option value="0">Select category</option>
+                        <?php for($i = 0; $i < count($allCategories); $i++): ?>
+                            <option value="<?= $i + 1 ?>"> <?= $allCategories[$i]["name"] ?> </option>
+                        <?php endfor ?>
                     </select>
                 </div>
 
