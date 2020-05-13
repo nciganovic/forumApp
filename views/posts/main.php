@@ -17,7 +17,7 @@
         
         <?php if(isset($_SESSION["userid"])): ?>
             <?php if($post["userid"] != $_SESSION["userid"]): ?>
-                <li><a href="#" class="upvote" data="<?= $post["id"] ?>">Upvote</a></li>
+                <li><a href="#" class="upvote" post="<?= $post["id"] ?>" user="<?= $_SESSION["userid"] ?>">Upvote</a></li>
             <?php endif ?>
         <?php else: ?>
             <li><a href="#" class="set-alert">Upvote</a></li>
