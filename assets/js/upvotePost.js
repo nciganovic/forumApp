@@ -5,7 +5,7 @@ $(document).ready(function(){
         var postID = $(this).attr("post");
         var userID = $(this).attr("user");
         
-        console.log(userID, postID);
+        var currentTag = $(this);
 
         $.ajax({
             url: "models/upvotes/upvote_post.php",
@@ -16,7 +16,10 @@ $(document).ready(function(){
                 userID: userID
             },
             success: function(data){
-                console.log(data);
+                console.log(data.msg);
+                if(data.msg == "upvoted"){
+                    currentTag.text("Already upvoted");
+                }
             },
             error: function(err){
                 console.log(err);

@@ -20,7 +20,7 @@ if(isset($_POST["userID"]) && isset($_POST["postID"])){
             $stmt->bindValue(":postid", $_POST["postID"]);
             $stmt->execute();
 
-            echo json_encode(["msg" => "Upvoted."]);
+            echo json_encode(["msg" => "upvoted"]);
         }
         catch(Exception $e){
             echo json_encode(["msg" => $e]);
