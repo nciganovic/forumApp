@@ -14,7 +14,7 @@
         <li><?= $post["name"] ?></li>
         <li><?= $post["createdat"] ?></li>
         <li><?= $post["username"] ?></li>
-        <li>0</li>
+        <li>Likes: <span class="l-<?= $post["id"] ?>"> <?= $post["likes"] ?> </span></li>
         
         <?php if(isset($_SESSION["userid"])): ?>
             <?php $is_upvoted = false ?>

@@ -19,6 +19,11 @@ $(document).ready(function(){
                 console.log(data.msg);
                 if(data.msg == "upvoted"){
                     currentTag.text("Already upvoted");
+
+                    likesCount = $(`.l-${postID}`).text();
+                    var addLike = Number(likesCount) + 1;
+                    $(`.l-${postID}`).text(addLike);
+
                 }
             },
             error: function(err){
