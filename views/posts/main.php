@@ -1,5 +1,5 @@
 <?php
-    require_once "models/posts/getpost.php";
+    require_once "models/posts/get_latest_posts.php";
     require_once "models/upvotes/get_all_user_upvotes.php";
 ?>
 
@@ -10,7 +10,7 @@
 <?php foreach($allPosts as $post): ?>
     <ul>
         <li><?= $post["id"] ?></li>
-        <li><?= $post["title"] ?></li>
+        <li><a href="index.php?page=post&id=<?= $post["id"] ?>"> <?= $post["title"] ?> </a></li>
         <li><?= $post["name"] ?></li>
         <li><?= $post["createdat"] ?></li>
         <li><?= $post["username"] ?></li>

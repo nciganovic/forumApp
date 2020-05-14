@@ -8,6 +8,10 @@
 
                     <?php include_once "views/posts/search.php"; ?>
 
+                <?php elseif($_GET["page"] == "post"): ?>
+
+                    <?php include_once "views/posts/post.php"; ?>
+
                 <?php endif ?>
 
             <?php else: ?>
