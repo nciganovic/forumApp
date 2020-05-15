@@ -36,7 +36,7 @@ $(document).ready(function(){
             $(this).addClass("d-none");
             $(this).removeClass("d-block");
         });
-
+        
         $(".comment-form textarea").each(function() {
             $(this).val("");
         });
