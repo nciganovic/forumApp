@@ -1,6 +1,6 @@
 <?php 
 require_once "models/posts/get_post.php";
-
+require_once "models/comments/get_main_comments.php";
 ?>
 
 <h2 class="text-center"><?= $post[0]["title"] ?></h2>
@@ -17,6 +17,24 @@ require_once "models/posts/get_post.php";
 </form>
 
 <div id="comments" class="mt-5 mb-5">
+    
+    <?php foreach($main_comments as $comment): ?>
+
+        <div class="com-and-rep mt-4">
+            <div class="comment">
+                <p class="mb-0"> <?= $comment["username"] ?>, <?= $comment["createdat"] ?></p>
+                <p class="mb-0"> <?= $comment["text"] ?></p>
+                <a href="#">reply</a>
+            </div>
+        
+            <div class="replies pl-5 mt-4 border-left">
+            </div>
+        </div>
+
+    <?php endforeach ?>
+
+
+    <!-- HARD CODED -->
     <div class="com-and-rep mt-4">
         
         <div class="comment">
