@@ -31,7 +31,7 @@ require_once "models/comments/get_replies.php";
             <form id ="f-<?= $comment["id"] ?>" class="d-none comment-form">
                 <label for="exampleFormControlSelect2">Insert comment:</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button class="btn btn-success mt-3 cmt" type="button">Send</button>
+                <button class="btn btn-success mt-3 cmt" formid="<?= $comment["id"] ?>" type="button">Send</button>
                 <button class="btn btn-danger mt-3 cancel" formid="<?= $comment["id"] ?>" type="button">Cancel</button>
             </form>
         
