@@ -1,6 +1,7 @@
 <?php 
 require_once "models/posts/get_post.php";
 require_once "models/comments/get_main_comments.php";
+require_once "models/comments/get_replies.php";
 ?>
 
 <h2 class="text-center"><?= $post[0]["title"] ?></h2>
@@ -28,13 +29,14 @@ require_once "models/comments/get_main_comments.php";
             </div>
         
             <div class="replies pl-5 mt-4 border-left">
+                <?php get_replies($comment["id"], $pdo); ?>
             </div>
         </div>
 
     <?php endforeach ?>
 
 
-    <!-- HARD CODED -->
+    <!-- HARD CODED 
     <div class="com-and-rep mt-4">
         
         <div class="comment">
@@ -82,7 +84,7 @@ require_once "models/comments/get_main_comments.php";
 
         </div>
         
-    </div>
+    </div>-->
 
 </div>
 
