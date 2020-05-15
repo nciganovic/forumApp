@@ -19,8 +19,15 @@ function get_replies($parent_id, $pdo){
                 echo '<div class="comment">';
                     echo '<p class="mb-0">'.$c["username"].','.$c["createdat"].'</p>';
                     echo '<p class="mb-0">'.$c["text"].'</p>';
-                    echo '<a href="#">reply</a>';
+                    echo '<a href="#" class="reply" commentid="'.$c["id"].'">reply</a>';
                 echo '</div>';
+
+                echo '<form id ="f-'.$c["id"].'" class="d-none comment-form">';
+                    echo '<label for="exampleFormControlSelect2">Insert comment:</label>';
+                    echo '<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>';
+                    echo '<button class="btn btn-success mt-3 cmt" type="button">Send</button>';
+                    echo '<button class="btn btn-danger mt-3 cancel" formid="'.$c["id"].'" type="button">Cancel</button>';
+                echo '</form>';
 
                 echo '<div class="replies pl-5 mt-4 border-left">';
                     get_replies($c["id"], $pdo);
