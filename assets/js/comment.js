@@ -2,13 +2,31 @@ $(document).ready(function(){
     console.log("comment.js");
 
     $(".cmt").click(function(){
-        console.log("comment");
         var formID = $(this).attr("formid");
-        console.log(formID);
 
         var text = $(`#f-${formID} textarea`).val();
         text = text.trim();
         console.log(text);
+
+        if(text != ""){
+            $.ajax({
+                url: "models/comments/insert_comment.php",
+                method: "post",
+                dataType: "json",
+                data:{
+                    id: formID,
+                    text: text
+                },
+                success: function(data){
+                    if(data.result == "0"){
+                        alert(data.msg);
+                    }
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            })
+        }
 
     })
 

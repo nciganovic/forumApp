@@ -11,10 +11,10 @@ require_once "models/comments/get_replies.php";
 <p><?= $post[0]["username"] ?></p>
 <p><?= $post[0]["likes"] ?></p>
 
-<form class="mt-5">
+<form id="f-0" class="mt-5">
     <label for="exampleFormControlSelect2">Insert comment:</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    <button class="btn btn-success mt-3 cmt" type="button">Send</button>
+    <button class="btn btn-success mt-3 cmt" type="button" formid="0">Send</button>
 </form>
 
 <div id="comments" class="mt-5 mb-5 pb-5">
@@ -23,7 +23,7 @@ require_once "models/comments/get_replies.php";
 
         <div class="com-and-rep mt-4">
             <div class="comment">
-                <p class="mb-0"> <?= $comment["username"] ?>, <?= $comment["createdat"] ?></p>
+                <p class="mb-0"> <?= $comment["id"] ?>,<?= $comment["username"] ?>, <?= $comment["createdat"] ?></p>
                 <p class="mb-0"> <?= $comment["text"] ?></p>
                 <a href="#" class="reply" commentid="<?= $comment["id"] ?>">reply</a>
             </div>
