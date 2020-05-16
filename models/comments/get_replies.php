@@ -3,7 +3,7 @@ function get_replies($parent_id, $pdo){
     $sql = "SELECT c.id, u.username, c.parentid, c.createdat, c.text 
             FROM comments c INNER JOIN users u ON c.userid = u.id 
             WHERE c.parentid = :pid 
-            ORDER BY c.createdat DESC";
+            ORDER BY c.createdat";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":pid", $parent_id);
@@ -29,7 +29,7 @@ function get_replies($parent_id, $pdo){
                     echo '<button class="btn btn-danger mt-3 cancel" formid="'.$c["id"].'" type="button">Cancel</button>';
                 echo '</form>';
 
-                echo '<div class="replies pl-5 mt-4 border-left">';
+                echo '<div id="r-'.$c["id"].'" class="replies pl-5 mt-4 border-left">';
                     get_replies($c["id"], $pdo);
                 echo '</div>';
             echo '</div>';
