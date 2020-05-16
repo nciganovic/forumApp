@@ -1,6 +1,6 @@
 $(document).ready(function(){
     console.log("comment.js");
-
+    
     $(".cmt").click(function(){
         var formID = $(this).attr("formid");
 
@@ -27,7 +27,35 @@ $(document).ready(function(){
                         console.log(data.result);
                     }
                     if(data.result == "1"){
-                        alert(data.msg);
+                        //alert(data.msg);
+                        var html = `<div class="com-and-rep mt-4">
+                                        <div class="comment">
+                                            <p class="mb-0"> ${data.id}, ${data.username}, now</p>
+                                            <p class="mb-0"> ${data.text} </p>
+                                            <a href="#" class="reply" commentid="${data.id}">reply</a>
+                                        </div>
+                            
+                                        <form id ="f-${data.id}" class="d-none comment-form">
+                                            <label for="exampleFormControlSelect2">Insert comment:</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            <button class="btn btn-success mt-3 cmt" formid="${data.id}" type="button">Send</button>
+                                            <button class="btn btn-danger mt-3 cancel" formid="${data.id}" type="button">Cancel</button>
+                                        </form>
+                                    
+                                        <div id ="r-${data.id}" class="replies pl-5 mt-4 border-left">
+                                            
+                                        </div>
+                                    </div>`;
+
+                        if(data.parent_id == "0"){
+                            $("#comments").append(html);
+                            $("#f-0 textarea").val("");
+                        }
+                        else{
+                            $(`#r-${data.parent_id}`).append(html);
+                            closeAndClearComments();
+                        }
+                        
                     }
                 },
                 error: function(err){
@@ -58,14 +86,18 @@ $(document).ready(function(){
         e.preventDefault();
         console.log("cancel");
 
-        $(".comment-form").each(function() {
-            $(this).addClass("d-none");
-            $(this).removeClass("d-block");
-        });
-        
-        $(".comment-form textarea").each(function() {
-            $(this).val("");
-        });
+        closeAndClearComments();
         
     });
 });
+
+function closeAndClearComments(){
+    $(".comment-form").each(function() {
+        $(this).addClass("d-none");
+        $(this).removeClass("d-block");
+    });
+    
+    $(".comment-form textarea").each(function() {
+        $(this).val("");
+    });
+}
