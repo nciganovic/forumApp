@@ -35,7 +35,7 @@ require_once "models/comments/get_replies.php";
                 <button class="btn btn-danger mt-3 cancel" formid="<?= $comment["id"] ?>" type="button">Cancel</button>
             </form>
         
-            <div class="replies pl-5 mt-4 border-left">
+            <div id ="r-<?= $comment["id"] ?>" class="replies pl-5 mt-4 border-left">
                 <?php get_replies($comment["id"], $pdo); ?>
             </div>
         </div>
