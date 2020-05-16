@@ -4,7 +4,7 @@ require_once "models/comments/get_main_comments.php";
 require_once "models/comments/get_replies.php";
 ?>
 
-<h2 class="text-center"><?= $post[0]["title"] ?></h2>
+<h1 postid="<?= $_GET["id"] ?>" class="text-center"><?= $post[0]["title"] ?></h1>
 <p><?= $post[0]["description"] ?></p>
 <p><?= $post[0]["createdat"] ?></p>
 <p><?= $post[0]["name"] ?></p>

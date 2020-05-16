@@ -6,7 +6,10 @@ $(document).ready(function(){
 
         var text = $(`#f-${formID} textarea`).val();
         text = text.trim();
-        console.log(text);
+        
+
+        var postID = $("h1").attr("postid");
+        console.log(formID,text, postID);
 
         if(text != ""){
             $.ajax({
@@ -14,11 +17,16 @@ $(document).ready(function(){
                 method: "post",
                 dataType: "json",
                 data:{
-                    id: formID,
-                    text: text
+                    commentID: formID,
+                    text: text,
+                    postID:postID
                 },
                 success: function(data){
                     if(data.result == "0"){
+                        console.log(data);
+                        console.log(data.result);
+                    }
+                    if(data.result == "1"){
                         alert(data.msg);
                     }
                 },
