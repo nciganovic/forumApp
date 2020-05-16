@@ -35,7 +35,10 @@ if(isset($_SESSION["userid"])){
             $stmt->execute();
 
             echo(json_encode([
-                "msg" => "Insert successfull",
+                "id" => $pdo->lastInsertId(),
+                "parent_id" => $comment_id,
+                "username" => $_SESSION["username"],
+                "text" => $text,
                 "result" => "1"
                 ]));
         }
