@@ -17,6 +17,10 @@ define("DATABASE", env("DBNAME"));
 define("USERNAME", env("USERNAME"));
 define("PASSWORD", env("PASSWORD"));
 
+// Email setup
+define("EMAIL", env("EMAIL"));
+define("EMAIL_PSW", env("EMAIL_PSW"));
+
 function env($name){
     // $podaci = explode("\n",file_get_contents(BASE_URL."/config/.env"));
     $open = fopen(ENV_FILE, "r");
