@@ -1,5 +1,11 @@
 <?php
-    require_once "models/posts/get_latest_posts.php";
+    if(isset($_GET["ctg"])){
+        require_once "models/posts/get_ctg_posts.php";
+    }
+    else{
+        require_once "models/posts/get_latest_posts.php";
+    }
+
     require_once "models/upvotes/get_all_user_upvotes.php";
 ?>
 
