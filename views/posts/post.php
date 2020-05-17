@@ -42,57 +42,6 @@ require_once "models/comments/get_replies.php";
 
     <?php endforeach ?>
 
-
-    <!-- HARD CODED 
-    <div class="com-and-rep mt-4">
-        
-        <div class="comment">
-            <p class="mb-0">Level 1 comment</p>
-            <a href="#">reply</a>
-        </div>
-
-        <div class="replies pl-5 mt-4 border-left">
-
-            <div class="com-and-rep">
-
-                <div class="comment">
-                    <p class="mb-0">Level 2 comment</p>
-                    <a href="#">reply</a>
-                </div>
-
-                <div class="replies pl-5 mt-4 border-left">
-
-                    <div class="com-and-rep mt-4">
-                        
-                        <div class="comment">
-                            <p class="mb-0">Level 3 comment</p>
-                            <a href="#">reply</a>
-                        </div>
-                        
-                        <div class="replies border-left">
-
-                        </div>
-                    </div>
-
-                    <div class="com-and-rep mt-4">
-                        <p class="mb-0">Level 3 comment</p>
-                        <a href="#">reply</a>
-
-                        <div class="replies border-left">
-
-                        </div>
-                    </div>
-
-                    
-
-                </div>
-
-            </div>
-
-        </div>
-        
-    </div>-->
-
 </div>
 
 <script src="assets/js/comment.js"></script>
