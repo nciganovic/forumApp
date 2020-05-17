@@ -1,10 +1,12 @@
-Pages for user: 
-    1. index
-    2. login 
-    3. register 
-    4. search          
-    5. post
-    6. category
-    7. mostrecent
-    8. topusers
-    9. createpost
+1. index *
+2. login *
+3. register *
+4. search          
+5. post *
+6. category *
+7. mostrecent *
+9. createpost *
+10. pagination
+11. admin panel
+12. txt log file
+13. profile page
