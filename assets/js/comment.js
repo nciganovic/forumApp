@@ -1,14 +1,12 @@
 $(document).ready(function(){
     console.log("comment.js");
     
-    $(".cmt").click(function(){
+    $(document).on('click','.cmt',function(){
         var formID = $(this).attr("formid");
-
         var text = $(`#f-${formID} textarea`).val();
-        text = text.trim();
-        
-
         var postID = $("h1").attr("postid");
+
+        text = text.trim();
         console.log(formID,text, postID);
 
         if(text != ""){
@@ -23,8 +21,7 @@ $(document).ready(function(){
                 },
                 success: function(data){
                     if(data.result == "0"){
-                        console.log(data);
-                        console.log(data.result);
+                        alert(data.msg);
                     }
                     if(data.result == "1"){
                         //alert(data.msg);
@@ -66,7 +63,7 @@ $(document).ready(function(){
 
     })
 
-    $(".reply").click(function(e){
+    $(document).on('click','.reply',function(e){
         e.preventDefault();
         console.log("reply");
 
@@ -82,7 +79,7 @@ $(document).ready(function(){
         $(`#f-${commentID}`).removeClass("d-none");
     });
 
-    $(".cancel").click(function(e){
+    $(document).on('click','.cancel',function(e){
         e.preventDefault();
         console.log("cancel");
 
