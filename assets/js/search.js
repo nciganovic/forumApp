@@ -17,6 +17,12 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     console.log(data);
+                    showPosts(data.posts);
+
+                    if(data.posts.length == 0){
+                        showError(search);
+                    }
+
                 },
                 error:function(err){
                     console.log(err);
@@ -28,5 +34,23 @@ $(document).ready(function(){
 });
 
 function showPosts(data){
+    var html = "";
+    html += "<ul>";
+    for(d of data){
+        html =  `
+                <li>${d.id}</li>
+                <li><a href="index.php?page=post&id=${d.id}"> ${d.title} </a></li>
+                <li> ${d.name} </li>
+                <li> ${d.createdat} </li>
+                <li> ${d.username} </li>
+                <li>Likes: <span class="l-${d.id}"> ${d.likes} </span></li>
+                `
+    }
+    html += "</ul>";
+    $("#search-posts").html(html);
+}
 
+function showError(search){
+    html = `<p class="text-center"> Post '${search}' not found. </p>`;
+    $("#search-posts").html(html);
 }
