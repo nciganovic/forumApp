@@ -2,6 +2,7 @@
 require_once "models/posts/get_post.php";
 require_once "models/comments/get_main_comments.php";
 require_once "models/comments/get_replies.php";
+require_once "models/upvotes/get_all_user_upvotes.php";
 ?>
 
 <h1 postid="<?= $_GET["id"] ?>" class="text-center"><?= $post[0]["title"] ?></h1>
@@ -10,6 +11,31 @@ require_once "models/comments/get_replies.php";
 <p><?= $post[0]["name"] ?></p>
 <p><?= $post[0]["username"] ?></p>
 <p><?= $post[0]["likes"] ?></p>
+
+<!-- START Upvote -->
+<?php if(isset($_SESSION["userid"])): ?>
+    <?php $is_upvoted = false ?>
+    <?php foreach($upvoted_posts as $up): ?>
+        <?php if($up["postid"] == $post[0]["id"]): ?>
+            <?php $is_upvoted = true ?>
+            <?php break ?>
+        <?php endif ?>
+    <?php endforeach ?>
+
+    <?php if(!$is_upvoted): ?>  
+        <?php if($post[0]["userid"] != $_SESSION["userid"]): ?>
+            <li><a href="#" class="upvote" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>">Upvote</a></li>
+        <?php else: ?>
+            <li><a href="#">Your post</a></li>
+        <?php endif ?>
+    <?php else: ?>
+        <li><a href="#" >Already upvoted</a></li>
+    <?php endif ?>
+
+<?php else: ?>
+    <li><a href="#" class="set-alert">Upvote</a></li>
+<?php endif ?>
+<!-- END Upvote -->
 
 <form id="f-0" class="mt-5">
     <label for="exampleFormControlSelect2">Insert comment:</label>
@@ -45,3 +71,4 @@ require_once "models/comments/get_replies.php";
 </div>
 
 <script src="assets/js/comment.js"></script>
+<script src="assets/js/upvotePost.js"></script>
