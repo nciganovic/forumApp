@@ -5,6 +5,7 @@ $(document).ready(function(){
         var search = $("#search-txt").val().trim();
         var offset = 0;
 
+        $("#loader").text("Load more");
         $(".load").attr("search", search);
         $("#search-txt").val("");
 
@@ -23,6 +24,7 @@ $(document).ready(function(){
                     if(data.result == "1"){
                         if(data.posts.length == 0){
                             showError(search, true);
+                            $("#loader").text("");
                         }
                         else{
                             //Display load more link
@@ -113,10 +115,7 @@ function showError(search, isFirst){
         $("#search-posts").html(html);
     }
     else{
-        $("#search-posts").append(html);
-        $("#loader").text("No more posts");  
-        $("#loader").removeClass("load");
-
+        $("#loader").text("No more posts");
     }
-    
+
 }
