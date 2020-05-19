@@ -1,10 +1,13 @@
 $(document).ready(function(){
 
-    $("#load-more").click(function(){
+    $("#load-more").click(function(e){
+        e.preventDefault();
         console.log("load more");
         
         var offset = $(this).attr("offset");
         console.log(offset);
+
+        $(this).attr("offset", Number(offset) + 2);
    
         $.ajax({
             url: "models/posts/get_more_posts.php",
@@ -19,7 +22,12 @@ $(document).ready(function(){
                     console.log(data.msg);
                 }
                 else{
-                    showPosts(data.posts);
+                    if(data.posts.length == 0){
+                        $("#load-more").text("No more posts");
+                    }
+                    else{
+                        showPosts(data.posts);
+                    }
                 }
 
             },
@@ -35,9 +43,10 @@ $(document).ready(function(){
 
 function showPosts(data){
     var html = "";
-    html += "<ul>";
+    
     for(d of data){
-        html =  `
+        html += "<ul>";
+        html +=  `
                 <li>${d.id}</li>
                 <li><a href="index.php?page=post&id=${d.id}"> ${d.title} </a></li>
                 <li> ${d.name} </li>
@@ -45,7 +54,8 @@ function showPosts(data){
                 <li> ${d.username} </li>
                 <li>Likes: <span class="l-${d.id}"> ${d.likes} </span></li>
                 `
+        html += "</ul>";
     }
-    html += "</ul>";
-    $("#loaded-posts").html(html);
+    
+    $("#loaded-posts").append(html);
 }
