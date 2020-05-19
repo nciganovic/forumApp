@@ -7,6 +7,9 @@ $(document).ready(function(){
         var offset = $(this).attr("offset");
         console.log(offset);
 
+        var ctg = $(this).attr("ctg");
+        console.log(ctg);
+
         $(this).attr("offset", Number(offset) + 2);
    
         $.ajax({
@@ -14,7 +17,8 @@ $(document).ready(function(){
             method: "get",
             dataType: "json",
             data:{
-                offset:offset
+                offset:offset,
+                ctg:ctg
             },
             success:function(data){
                 console.log(data);

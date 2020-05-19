@@ -26,6 +26,11 @@
 
 <div id="loaded-posts" class="mt-5 mb-5"></div>
 
-<p class="mt-5 mb-5"><a href="#" id="load-more" offset="2">Load more</a></p>
+<?php if(isset($_GET["ctg"])): ?>
+    <p class="mt-5 mb-5"><a href="#" id="load-more" ctg="<?= $_GET["ctg"] ?>" offset="2">Load more</a></p>
+<?php else: ?>
+    <p class="mt-5 mb-5"><a href="#" id="load-more" offset="2">Load more</a></p>
+<?php endif ?>    
+
 
 <script src="assets/js/loadMore.js"></script>
