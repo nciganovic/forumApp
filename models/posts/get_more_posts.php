@@ -1,4 +1,6 @@
 <?php 
+$limit = 2;
+
 require_once "../../config/connection.php";
 
 if(isset($_GET["offset"])){
@@ -10,11 +12,11 @@ if(isset($_GET["offset"])){
             INNER JOIN users u ON p.userid = u.id
             GROUP BY p.id, p.title, p.createdat, c.name, u.username, u.id
             ORDER BY p.createdat DESC
-            LIMIT :l OFFSET :offset ";
+            LIMIT :limit OFFSET :offset ";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":offset", $offset);
-    $stmt->bindParam(":l", LIMIT);
+    $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
     $stmt->execute();
     $all_posts = $stmt->fetchAll();
 
