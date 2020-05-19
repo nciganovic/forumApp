@@ -1,5 +1,5 @@
 <?php
-    define("LIMIT", 2);
+    $limit = 2;
 
     if(isset($_GET["ctg"])){
         require_once "models/posts/get_ctg_posts.php";
@@ -49,9 +49,9 @@
     </ul>
 <?php endforeach ?>
 
-<div id="loaded-posts"></div>
+<div id="loaded-posts" class="mt-5 mb-5"></div>
 
-<p><a href="#" id="load-more" offset="0">Load more</a></p>
+<p class="mt-5 mb-5"><a href="#" id="load-more" offset="2">Load more</a></p>
 
 <script src="assets/js/upvotePost.js"></script>
 <script src="assets/js/loadMore.js"></script>
