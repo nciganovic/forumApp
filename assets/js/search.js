@@ -35,9 +35,10 @@ $(document).ready(function(){
 
 function showPosts(data){
     var html = "";
-    html += "<ul>";
+    
     for(d of data){
-        html =  `
+        html += "<ul>";
+        html +=  `
                 <li>${d.id}</li>
                 <li><a href="index.php?page=post&id=${d.id}"> ${d.title} </a></li>
                 <li> ${d.name} </li>
@@ -45,8 +46,9 @@ function showPosts(data){
                 <li> ${d.username} </li>
                 <li>Likes: <span class="l-${d.id}"> ${d.likes} </span></li>
                 `
+        html += "</ul>";
     }
-    html += "</ul>";
+    
     $("#search-posts").html(html);
 }
 
