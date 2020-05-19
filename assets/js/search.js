@@ -1,10 +1,11 @@
 $(document).ready(function(){
     console.log("search");
 
-    $("#search-btn").click(function(){
+    $(".search-btn").click(function(){
         var search = $("#search-txt").val().trim();
-        console.log(search);
+        var offset = 0;
 
+        $(".load").attr("search", search);
         $("#search-txt").val("");
 
         if(search != ""){
@@ -13,27 +14,75 @@ $(document).ready(function(){
                 method: "get",
                 dataType: "json",
                 data:{
-                    search:search
+                    search:search,
+                    offset:offset
                 },
                 success:function(data){
                     console.log(data);
-                    showPosts(data.posts);
+                
+                    if(data.result == "1"){
+                        if(data.posts.length == 0){
+                            showError(search, true);
+                        }
+                        else{
+                            //Display load more link
+                            $(".load").removeClass("d-none");
+                            $(".load").addClass("d-block");
 
-                    if(data.posts.length == 0){
-                        showError(search);
+                            showPosts(data.posts, true);
+                        }    
                     }
-
+                    
                 },
                 error:function(err){
                     console.log(err);
                 }
             });
         }
+    });
+
+    $(".load").click(function(e){
+        e.preventDefault();
+        const step = 2;
+
+        var search = $(this).attr("search");
+        var offset = $(this).attr("offset");
+
+        $(this).attr("offset", Number(offset) + step);
+
+        console.log("Offset", offset, "Search", search);
+
+        $.ajax({
+            url: "models/posts/search_post.php",
+            method: "get",
+            dataType: "json",
+            data:{
+                search:search,
+                offset:offset
+            },
+            success:function(data){
+                console.log(data);
+            
+                if(data.result == "1"){
+                    if(data.posts.length == 0){
+                        showError(search, false);
+                    }
+                    else{
+                        showPosts(data.posts, false);
+                    }    
+                }
+                
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
 
     });
+
 });
 
-function showPosts(data){
+function showPosts(data, isNew){
     var html = "";
     
     for(d of data){
@@ -49,10 +98,25 @@ function showPosts(data){
         html += "</ul>";
     }
     
-    $("#search-posts").html(html);
+    if(isNew){
+        $("#search-posts").html(html);
+    }
+    else{
+        $("#search-posts").append(html);
+    }
+    
 }
 
-function showError(search){
+function showError(search, isFirst){
     html = `<p class="text-center"> Post '${search}' not found. </p>`;
-    $("#search-posts").html(html);
+    if(isFirst){
+        $("#search-posts").html(html);
+    }
+    else{
+        $("#search-posts").append(html);
+        $("#loader").text("No more posts");  
+        $("#loader").removeClass("load");
+
+    }
+    
 }
