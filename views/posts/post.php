@@ -6,11 +6,14 @@ require_once "models/upvotes/get_all_user_upvotes.php";
 ?>
 
 <h1 postid="<?= $_GET["id"] ?>" class="text-center"><?= $post[0]["title"] ?></h1>
-<p><?= $post[0]["description"] ?></p>
-<p><?= $post[0]["createdat"] ?></p>
-<p><?= $post[0]["name"] ?></p>
-<p><?= $post[0]["username"] ?></p>
-<p><?= $post[0]["likes"] ?></p>
+<ul>
+    <li><?= $post[0]["id"] ?></li>
+    <li><a href="index.php?page=post&id=<?= $post[0]["id"] ?>"> <?= $post[0]["title"] ?> </a></li>
+    <li><?= $post[0]["name"] ?></li>
+    <li><?= $post[0]["createdat"] ?></li>
+    <li><?= $post[0]["username"] ?></li>
+    <li>Likes: <span class="l-<?= $post[0]["id"] ?>"> <?= $post[0]["likes"] ?> </span></li>
+</ul>
 
 <!-- START Upvote -->
 <?php if(isset($_SESSION["userid"])): ?>
