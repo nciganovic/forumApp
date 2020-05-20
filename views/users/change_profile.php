@@ -16,6 +16,9 @@
             <div class="form-group">
                 <label for="bio">Bio</label>
                 <textarea class="form-control" id="bio" rows="3"> <?= $user[0]["bio"] ?> </textarea>
+                <p>Total chars (max 255): 
+                    <span id="bio-count"></span>
+                </p>
             </div>   
 
             <?php if($user[0]["profileimg"]): ?>
@@ -31,6 +34,9 @@
 
             <button type="submit" class="btn btn-success">Change info</button>
         </form>  
+
+        <div class="errors"></div>
+
         </div>
     </div>
 </div>
