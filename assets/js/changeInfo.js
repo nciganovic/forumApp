@@ -14,7 +14,6 @@ $(document).ready(function(){
             return true;
         }
         else{
-       
             $(".errors").html("");
 
             if(!isValidUsername){
@@ -25,9 +24,7 @@ $(document).ready(function(){
             }
         
             return false;
-       
         }
-    
     })
 
     $("#bio").keyup(function(){
