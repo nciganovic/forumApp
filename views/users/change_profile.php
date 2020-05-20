@@ -7,15 +7,15 @@
     <div class="row">
         <div class="col-12">
         <h1 class="text-center">Change your info</h1>
-        <form method="POST" action="models/user/update_profile.php">
+        <form method="POST" action="models/user/update_profile.php" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" value="<?= $user[0]["username"] ?>">
+                <input type="text" class="form-control" id="username" name="username" value="<?= $user[0]["username"] ?>">
             </div>
 
             <div class="form-group">
                 <label for="bio">Bio</label>
-                <textarea class="form-control" id="bio" rows="3"> <?= $user[0]["bio"] ?> </textarea>
+                <textarea class="form-control" id="bio" name="bio" rows="3"> <?= $user[0]["bio"] ?> </textarea>
                 <p>Total chars (max 255): 
                     <span id="bio-count"></span>
                 </p>
@@ -29,7 +29,7 @@
             
             <div class="form-group">
                 <label for="profileimg">Profile image</label>
-                <input type="file" class="form-control-file" id="profileimg">
+                <input type="file" class="form-control-file" id="profileimg" name="profileimg">
             </div>
 
             <button type="submit" class="btn btn-success">Change info</button>
