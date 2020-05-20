@@ -15,6 +15,5 @@
         <li>No image</li>
     <?php endif ?>
 
-    <li><a href="#">Change info</a></li>
+    <li><a href="index.php?page=changeprofile&width=1">Change info</a></li>
 </ul>
-

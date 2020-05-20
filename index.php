@@ -30,6 +30,11 @@
             require_once "views/users/profile.php";
 
         }
+        elseif($_GET["page"] == "changeprofile"){
+
+            require_once "views/users/change_profile.php";
+
+        }
     
     //Pages that user sidebar   
     }else{
