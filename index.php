@@ -25,6 +25,10 @@
 
             require_once "views/users/createpost.php";
 
+        }elseif($_GET["page"] == "profile"){
+
+            require_once "views/users/profile.php";
+
         }
     
     //Pages that user sidebar   
