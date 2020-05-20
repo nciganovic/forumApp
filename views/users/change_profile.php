@@ -7,15 +7,10 @@
     <div class="row">
         <div class="col-12">
         <h1 class="text-center">Change your info</h1>
-        <form method="POST" action="#">
+        <form method="POST" action="models/user/update_profile.php">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" value="<?= $user[0]["username"] ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" value="<?= $user[0]["email"] ?>">
             </div>
 
             <div class="form-group">
@@ -39,3 +34,5 @@
         </div>
     </div>
 </div>
+
+<script src="assets/js/changeInfo.js"></script>
