@@ -22,7 +22,7 @@
             </div>   
 
             <?php if($user[0]["profileimg"]): ?>
-                <img src="<?php $user[0]["profileimg"]?>" alt="profile image">
+                <img src="uploads/<?= $user[0]["profileimg"]?>" alt="profile image">
             <?php else: ?>
                 <p>You dont have profile picture</p>
             <?php endif ?>

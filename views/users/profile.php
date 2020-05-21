@@ -10,7 +10,7 @@
     <li>Bio: <?= $user[0]["bio"] ?></li>
     
     <?php if($user[0]["profileimg"]): ?>
-        <img src="<?php $user[0]["profileimg"]?>" alt="profile image">
+        <img src="uploads/<?= $user[0]["profileimg"]?>" alt="profile image">
     <?php else: ?>
         <li>No image</li>
     <?php endif ?>
