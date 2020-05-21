@@ -53,10 +53,6 @@ if(isset($_POST["oldPassword"]) && isset($_POST["newPassword1"]) && isset($_POST
         $stmt->execute();
         $userPsw = $stmt->fetchAll();
 
-        //echo($oldPassword . " ");
-        //echo($userPsw[0]["password"] . " ");
-
-        
         if(password_verify($oldPassword, $userPsw[0]["password"])){
             $hashNewPassword = password_hash($newPassword1, PASSWORD_DEFAULT);
 
