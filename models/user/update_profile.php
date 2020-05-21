@@ -4,7 +4,7 @@ require_once "../../config/connection.php";
 
 if(isset($_POST["username"]) && isset($_POST["bio"])){
     $username = $_POST["username"];
-    $bio = trim($_POST["bio"]);
+    $bio = addslashes(trim($_POST["bio"]));
 
     $isUsernameValid = preg_match('/^(?=.{5,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/', $username);
 

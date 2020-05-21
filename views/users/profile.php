@@ -7,7 +7,7 @@
 <ul>
     <li>Username: <?= $user[0]["username"] ?></li>
     <li>Email: <?= $user[0]["email"] ?></li>
-    <li>Bio: <?= $user[0]["bio"] ?></li>
+    <li>Bio: <?= stripslashes($user[0]["bio"]) ?></li>
     
     <?php if($user[0]["profileimg"]): ?>
         <img src="uploads/<?= $user[0]["profileimg"]?>" alt="profile image">
