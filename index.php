@@ -35,6 +35,11 @@
             require_once "views/users/change_profile.php";
 
         }
+        elseif($_GET["page"] == "changepsw"){
+
+            require_once "views/users/change_password.php";
+
+        }
     
     //Pages that user sidebar   
     }else{
