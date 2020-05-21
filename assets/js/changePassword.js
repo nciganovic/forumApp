@@ -17,7 +17,7 @@ $(document).ready(function(){
         }
 
         if(newPassword1 != newPassword2){
-            $(".message").append("<p class='text-danger text-center'>New password are not identical.</p>");
+            $(".message").append("<p class='text-danger text-center'>New passwords are not identical.</p>");
             isValidPsw = false;
         }
 
@@ -26,7 +26,7 @@ $(document).ready(function(){
             isValidPsw = false;
         }
 
-        if(oldPassword < 5 || oldPassword > 25){
+        if(oldPassword.length < 5 || oldPassword.length > 25){
             $(".message").html("<p class='text-danger text-center'>Wrong current password.</p>");
             isValidPsw = false;
         }
@@ -49,7 +49,7 @@ $(document).ready(function(){
                         $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`); 
                     }
                     else{
-                        $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`);
+                        $(".message").html(`<p class='text-danger text-center'>${data.msg}</p>`);
                     }
 
                 },
