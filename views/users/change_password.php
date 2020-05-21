@@ -4,8 +4,8 @@
 
         <h1 class="text-center">Change password</h1>
         <div class="form-group">
-            <label for="old-psw">Old password</label>
-            <input type="password" class="form-control" id="old-psw" placeholder="Old password">
+            <label for="old-psw">Current password</label>
+            <input type="password" class="form-control" id="old-psw" placeholder="Current password">
         </div>
         <div class="form-group">
             <label for="new-psw-1">New password</label>
@@ -17,6 +17,8 @@
         </div>  
 
         <button type="submit" class="btn btn-success">Change</button>
+
+        <div class="message"></div>
 
         </div>
     </div>
