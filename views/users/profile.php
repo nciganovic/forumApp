@@ -17,3 +17,9 @@
 
     <li><a href="index.php?page=changeprofile&width=1">Change info</a></li>
 </ul>
+
+<?php if(isset($_SESSION["message"])): ?>
+<p><?= $_SESSION["message"] ?></p>
+
+<?php unset($_SESSION["message"]) ?>
+<?php endif ?>

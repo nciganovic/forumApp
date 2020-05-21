@@ -55,7 +55,8 @@ if(isset($_POST["username"]) && isset($_POST["bio"])){
                 echo("img uploaded");
             }
             else{
-                echo("error while uploading");
+                $_SESSION["message"] = "Image failed to uplaod.";
+                die();
             }
 
             //Insert img name to database
@@ -63,42 +64,66 @@ if(isset($_POST["username"]) && isset($_POST["bio"])){
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":pimg", $new_file_name);
             $stmt->bindParam(":id", $_SESSION["userid"]);
-            $stmt->execute();
+            
+            try{
+                $stmt->execute();
+            }
+            catch(Exception $e){
+                $_SESSION["message"] = "Image failed to uplaod.";
+                die();
+            }
+            
         
         }
-        
-        // Inset rest of info
-        $sql = "UPDATE users 
-                SET username = :u , bio = :bio  
-                WHERE id = :id";
+
+        //Check if username already exist
+        $sql = "SELECT * FROM users WHERE username = :u AND id != :uid";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":u", $username);
-        $stmt->bindParam(":bio", $bio);
-        $stmt->bindParam(":id", $_SESSION["userid"]);
+        $stmt->bindParam(":uid", $_SESSION["userid"]);
+        $stmt->execute();
 
-        try{
-            $stmt->execute();
+        $count = $stmt->rowCount();
+
+
+        if($count == 0){
+            // Inset username and info
+            $sql = "UPDATE users 
+                    SET username = :u , bio = :bio  
+                    WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":u", $username);
+            $stmt->bindParam(":bio", $bio);
+            $stmt->bindParam(":id", $_SESSION["userid"]);
+
+            try{
+                $stmt->execute();
+                $_SESSION["message"] = "Information updated successfully.";
+            }
+            catch(Exception $e){
+                $_SESSION["message"] = "Information failed to update.";
+            }
         }
-        catch(Exception $e){
-            echo($e);
+        else{
+            $_SESSION["message"] = "Username already taken.";
         }
-        
-        //header("Location: http://". $_SERVER["SERVER_NAME"] . "/forumApp/index.php?page=profile&width=1");
 
     }
     else{
-        echo("username or bio are not valid");    
+        $_SESSION["message"] = "Username or bio are not valid.";    
     }
 
 }
 else{
     
     if(!isset($_POST["username"])){
-        echo("username not set");
+        $_SESSION["message"] = "Username not set.";
     }
     
     if(!isset($_POST["bio"])){
-        echo("bio not set");
+        $_SESSION["message"] = "Bio not set.";
     }
     
 }
+
+header("Location: http://". $_SERVER["SERVER_NAME"] . "/forumApp/index.php?page=profile&width=1");
