@@ -1,8 +1,8 @@
 <?php
 $sql = "SELECT username, email, bio, profileimg
         FROM users
-        WHERE username = :u";
+        WHERE id = :u";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(":u", $_SESSION["username"]);
+$stmt->bindParam(":u", $_SESSION["userid"]);
 $stmt->execute();
 $user = $stmt->fetchAll();
