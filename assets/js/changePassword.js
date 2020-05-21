@@ -21,6 +21,11 @@ $(document).ready(function(){
             isValidPsw = false;
         }
 
+        if(oldPassword == newPassword2 || oldPassword == newPassword1){
+            $(".message").append("<p class='text-danger text-center'>Current and new password are same.</p>");
+            isValidPsw = false;
+        }
+
         if(oldPassword < 5 || oldPassword > 25){
             $(".message").html("<p class='text-danger text-center'>Wrong current password.</p>");
             isValidPsw = false;
@@ -39,6 +44,14 @@ $(document).ready(function(){
                 dataType:"json",
                 success:function(data){
                     console.log(data);
+
+                    if(data.result == "1"){
+                        $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`); 
+                    }
+                    else{
+                        $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`);
+                    }
+
                 },
                 error:function(err){
                     console.log(err);
