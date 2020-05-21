@@ -16,64 +16,68 @@ if(isset($_POST["username"]) && isset($_POST["bio"])){
         $tmp_name = $_FILES["profileimg"]["tmp_name"];
         $file_size = $_FILES["profileimg"]["size"];
         $file_type = $_FILES["profileimg"]["type"];
+        
+        if($_FILES["profileimg"]["size"] > 0){
+            if($file_type == "image/png" || $file_type == "image/jpg" || $file_type == "image/jpeg"){
+                //Everything is valid, now upload and update
+                
+                //Create new file name
+                $separate = explode(".", $file_name);   
+                $extension = end($separate);
+                $new_file_name = time() . "." . $extension; 
+                $target_file = $target_dir . $new_file_name;
 
-        if($file_type == "image/png" || $file_type == "image/jpg" || $file_type == "image/jpeg"){
-            //Everything is valid, now upload and update
-            
-            //Create new file name
-            $separate = explode(".", $file_name);   
-            $extension = end($separate);
-            $new_file_name = time() . "." . $extension; 
-            $target_file = $target_dir . $new_file_name;
+                //Resize image to 100x100
+                list($width, $heigth) = getimagesize($tmp_name);
+                
+                $new_width = 100;
+                $new_heigth = 100;
 
-            //Resize image to 100x100
-            list($width, $heigth) = getimagesize($tmp_name);
-            
-            $new_width = 100;
-            $new_heigth = 100;
+                if($file_type == "image/png"){
+                    $this_image = imagecreatefrompng($tmp_name);
+                }
+                else if($file_type == "image/jpg" || $file_type == "image/jpeg"){
+                    $this_image = imagecreatefromjpeg($tmp_name);
+                }
 
-            if($file_type == "image/png"){
-                $this_image = imagecreatefrompng($tmp_name);
-            }
-            else if($file_type == "image/jpg" || $file_type == "image/jpeg"){
-                $this_image = imagecreatefromjpeg($tmp_name);
-            }
+                $empty_img = imagecreatetruecolor($new_width, $new_heigth);
+                imagecopyresampled($empty_img, $this_image, 0, 0, 0, 0, $new_width, $new_heigth, $width, $heigth);
+                $new_image = $empty_img;
 
-            $empty_img = imagecreatetruecolor($new_width, $new_heigth);
-            imagecopyresampled($empty_img, $this_image, 0, 0, 0, 0, $new_width, $new_heigth, $width, $heigth);
-            $new_image = $empty_img;
+                //Uplaod resized image
+                if($file_type == "image/png"){
+                    $result = imagepng($new_image, "../../" .$target_file);
+                }
+                else if($file_type == "image/jpg" || $file_type == "image/jpeg"){
+                    $result = imagejpeg($new_image, "../../" .$target_file);
+                }
 
-            //Uplaod resized image
-            if($file_type == "image/png"){
-                $result = imagepng($new_image, "../../" .$target_file);
-            }
-            else if($file_type == "image/jpg" || $file_type == "image/jpeg"){
-                $result = imagejpeg($new_image, "../../" .$target_file);
-            }
+                if ($result) {
+                    echo("img uploaded");
+                }
+                else{
+                    echo "Image failed to uplaod.";
+                    die();
+                }
 
-            if ($result) {
-                echo("img uploaded");
+                //Insert img name to database
+                $sql = "UPDATE users SET profileimg = :pimg WHERE id = :id";
+                $stmt = $pdo->prepare($sql);
+                $stmt->bindParam(":pimg", $new_file_name);
+                $stmt->bindParam(":id", $_SESSION["userid"]);
+                
+                try{
+                    $stmt->execute();
+                }
+                catch(Exception $e){
+                    echo "Image failed to uplaod.";
+                    die();
+                }
             }
             else{
-                $_SESSION["message"] = "Image failed to uplaod.";
+                echo "File is not image.";
                 die();
             }
-
-            //Insert img name to database
-            $sql = "UPDATE users SET profileimg = :pimg WHERE id = :id";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(":pimg", $new_file_name);
-            $stmt->bindParam(":id", $_SESSION["userid"]);
-            
-            try{
-                $stmt->execute();
-            }
-            catch(Exception $e){
-                $_SESSION["message"] = "Image failed to uplaod.";
-                die();
-            }
-            
-        
         }
 
         //Check if username already exist
