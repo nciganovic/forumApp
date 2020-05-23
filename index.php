@@ -13,19 +13,23 @@
             
             require_once "views/users/login.php";
         
-        }elseif($_GET["page"] == "register"){
+        }
+        elseif($_GET["page"] == "register"){
 
             require_once "views/users/register.php";
         
-        }elseif($_GET["page"] == "validate"){
+        }
+        elseif($_GET["page"] == "validate"){
 
             require_once "views/users/validate.php";
 
-        }elseif($_GET["page"] == "createpost"){
+        }
+        elseif($_GET["page"] == "createpost"){
 
             require_once "views/users/createpost.php";
 
-        }elseif($_GET["page"] == "profile"){
+        }
+        elseif($_GET["page"] == "profile"){
 
             require_once "views/users/profile.php";
 
@@ -43,6 +47,11 @@
         elseif($_GET["page"] == "dashboard"){
 
             require_once "views/admin/dashboard.php";
+
+        }
+        elseif($_GET["page"] == "table"){
+
+            require_once "views/admin/table.php";
 
         }
     

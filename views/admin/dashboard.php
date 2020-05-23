@@ -11,7 +11,8 @@
         <div class="col-12">
             <ul>
                 <?php foreach($all_tables as $table): ?>
-                    <li><?= $table["Tables_in_forum"] ?></li>
+                    <li>
+                        <a href="index.php?page=table&width=1&name=<?= $table["Tables_in_forum"] ?>"> <?= $table["Tables_in_forum"] ?></a></li>
                 <?php endforeach ?>
             </ul>
         </div>
