@@ -7,7 +7,7 @@ $sql = "SELECT COLUMN_NAME
         ORDER BY ORDINAL_POSITION";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(":p", $_GET["name"]);
+$stmt->bindParam(":p", $_GET["table"]);
 $stmt->bindParam(":f", $table);
 $stmt->execute();
 $all_row_names = $stmt->fetchAll();

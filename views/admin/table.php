@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="text-center"><?= $_GET["name"] ?></h1>
+            <h1 class="text-center"><?= $_GET["table"] ?></h1>
         </div>
         <div class="col-12">
             <table class="mt-5 mb-5 pb-5 pt-5 table table-bordered table-responsive">
@@ -33,13 +33,17 @@
                             
                         <?php endfor ?>
 
-                        <td>Update</td>
-                        <td>Delete</td>
+                        <td class="p-3">Update</td>
+                        <td class="p-3">Delete</td>
 
                         </tr>
                     <?php endfor ?>
                 </tbody>
             </table>
+            
+            <div class="mt-5 mb-5 pb-5">
+                <a class="btn btn-success" href="index.php?page=row&width=1&table=<?= $_GET["table"] ?>&type=create">Create</a>
+            </div>
         </div>
     </div>  
 </div>
