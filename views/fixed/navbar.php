@@ -21,6 +21,12 @@
                 <a class="nav-link text-light" href="index.php?page=register&width=1">Register</a>
             </li>
         <?php else: ?>
+            <?php if($_SESSION["role"] == "1"): ?>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="index.php?page=dashboard&width=1">Dashboard</a>
+            </li>
+            <?php endif ?>
+
             <li class="nav-item active">
                 <a class="nav-link text-light" href="index.php?page=profile&width=1"><?= $_SESSION["username"] ?></a>
             </li>

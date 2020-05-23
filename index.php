@@ -40,6 +40,11 @@
             require_once "views/users/change_password.php";
 
         }
+        elseif($_GET["page"] == "dashboard"){
+
+            require_once "views/admin/dashboard.php";
+
+        }
     
     //Pages that user sidebar   
     }else{

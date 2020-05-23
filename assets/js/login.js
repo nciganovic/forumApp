@@ -52,7 +52,7 @@ $(document).ready(function(){
                             window.location.href = "http://localhost/forumApp/index.php";
                         }
                         else{
-                            window.location.href = "http://localhost/forumApp/admin.php";
+                            window.location.href = "http://localhost/forumApp/index.php?page=dashboard&width=1";
                         }
                         
                     }
