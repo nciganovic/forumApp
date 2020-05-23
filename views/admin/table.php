@@ -1,5 +1,7 @@
 <?php 
     require_once "models/user/redirect_unadmin.php";
+    require_once "models/admin/get_all_rows.php";
+    require_once "models/admin/get_row_names.php";
 ?>
 <div class="container">
     <div class="row">
@@ -7,9 +9,37 @@
             <h1 class="text-center"><?= $_GET["name"] ?></h1>
         </div>
         <div class="col-12">
-            <ul>
-               
-            </ul>
+            <table class="mt-5 mb-5 pb-5 pt-5 table table-bordered table-responsive">
+                <thead>
+                    <?php foreach($all_row_names as $ar): ?>
+                    <th class="p-3">
+                        <?= $ar[0] ?>
+                    </th>
+                    <?php endforeach ?>
+                    <th class="p-3">
+                        Update
+                    </th>
+                    <th class="p-3">
+                        Delete
+                    </th>
+                </thead>
+
+                <tbody>
+                    <?php for($i = 0; $i < count($all_rows); $i++): ?>
+                        <tr>
+                        <?php for($y = 0; $y < count($all_rows[$i]) / 2; $y++): ?>
+                        
+                            <td class="p-3"> <?= $all_rows[$i][$y] ?> </td>
+                            
+                        <?php endfor ?>
+
+                        <td>Update</td>
+                        <td>Delete</td>
+
+                        </tr>
+                    <?php endfor ?>
+                </tbody>
+            </table>
         </div>
     </div>  
 </div>
