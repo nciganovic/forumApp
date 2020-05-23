@@ -1,20 +1,7 @@
 <?php 
     require_once "models/user/redirect_unadmin.php";
     require_once "models/admin/get_row_names.php";
-
-    $db = "forum";
-    $table = $_GET["table"];
-    $col = "userid";
-
-    $sql = "SELECT REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_SCHEMA = :db AND TABLE_NAME = :table AND COLUMN_NAME = :col ";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":db", $db);
-    $stmt->bindParam(":table", $table);
-    $stmt->bindParam(":col", $col);
-    $stmt->execute();
-    $refTable = $stmt->fetchAll();
-
-    var_dump($refTable);
+    require_once "models/admin/get_fk_data.php";
 ?>
 
 <div class="container">
@@ -25,10 +12,24 @@
         <div class="col-12">
             
             <?php foreach($all_row_names as $rn): ?>
-                <div class="form-group">
-                    <label><?= $rn[0] ?></label>
-                    <input type="text" class="form-control" name="<?= $rn[0] ?>" placeholder="<?= $rn[0] ?>">
-                </div>
+
+                <?php $fk_data = get_fk_data($_GET["table"], $rn[0], $pdo); ?>
+                
+                <?php if($fk_data == null): ?>
+                    <div class="form-group">
+                        <label><?= $rn[0] ?></label>
+                        <input type="text" class="form-control" name="<?= $rn[0] ?>" placeholder="<?= $rn[0] ?>">
+                    </div>
+                <?php else: ?>
+                    <div class="form-group">
+                        <label><?= $rn[0] ?></label>
+                        <select class="form-control" name="<?= $rn[0] ?>">
+                            <?php foreach($fk_data as $data): ?>
+                               <option value="<?= $data[0] ?>"> <?= $data[1] ?> </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                <?php endif ?>
             <?php endforeach ?>
             
             <div class="mt-5 mb-5">
