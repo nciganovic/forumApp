@@ -54,6 +54,11 @@
             require_once "views/admin/table.php";
 
         }
+        elseif($_GET["page"] == "row"){
+
+            require_once "views/admin/row.php";
+
+        }
     
     //Pages that user sidebar   
     }else{
