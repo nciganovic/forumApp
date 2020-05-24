@@ -102,7 +102,7 @@
                 <input type="hidden" id="custId" name="table-name" value="<?= $_GET["table"] ?>">
 
                 <div class="mt-5 mb-5">
-                <button type="submit" name="create" class="btn btn-success">Create</button>
+                <button type="submit" name="edit" class="btn btn-success">Edit</button>
                 </div>
 
             <?php endif ?>
