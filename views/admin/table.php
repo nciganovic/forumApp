@@ -1,7 +1,9 @@
 <?php 
     require_once "models/user/redirect_unadmin.php";
     require_once "models/admin/get_all_rows.php";
-    require_once "models/admin/get_row_names.php";
+    require_once "models/admin/get_col_names.php";
+
+    $all_col_names = get_col_names($pdo, $_GET["table"]);
 ?>
 <div class="container">
     <div class="row">
@@ -11,9 +13,9 @@
         <div class="col-12">
             <table class="mt-5 mb-5 pb-5 pt-5 table table-bordered table-responsive">
                 <thead>
-                    <?php foreach($all_row_names as $ar): ?>
+                    <?php foreach($all_col_names as $cn): ?>
                     <th class="p-3">
-                        <?= $ar[0] ?>
+                        <?= $cn[0] ?>
                     </th>
                     <?php endforeach ?>
                     <th class="p-3">
