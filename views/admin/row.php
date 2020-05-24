@@ -13,23 +13,32 @@
             
             <?php foreach($all_row_names as $rn): ?>
 
-                <?php $fk_data = get_fk_data($_GET["table"], $rn[0], $pdo); ?>
-                
-                <?php if($fk_data == null): ?>
-                    <div class="form-group">
-                        <label><?= $rn[0] ?></label>
-                        <input type="text" class="form-control" name="<?= $rn[0] ?>" placeholder="<?= $rn[0] ?>">
-                    </div>
-                <?php else: ?>
-                    <div class="form-group">
-                        <label><?= $rn[0] ?></label>
-                        <select class="form-control" name="<?= $rn[0] ?>">
-                            <?php foreach($fk_data as $data): ?>
-                               <option value="<?= $data[0] ?>"> <?= $data[1] ?> </option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
+                <?php if($rn[0] != "id"): ?>
+
+                    <?php $fk_data = get_fk_data($_GET["table"], $rn[0], $pdo); ?> 
+
+                    <?php if($fk_data == null): ?>
+                        <div class="form-group">
+                            <label><?= $rn[0] ?></label>
+                            <input type="text" class="form-control" name="<?= $rn[0] ?>" placeholder="<?= $rn[0] ?>">
+                        </div>
+                    <?php else: ?>
+                        <div class="form-group">
+                            <label><?= $rn[0] ?></label>
+                            <select class="form-control" name="<?= $rn[0] ?>">
+                                <?php foreach($fk_data as $data): ?>
+                                    <?php if($rn[0] == "parentid"): ?>
+                                        <!-- if rn is parentid then display text value -->
+                                        <option value="<?= $data[0] ?>"> <?= $data["text"] ?> </option>
+                                    <?php else: ?>
+                                        <option value="<?= $data[0] ?>"> <?= $data[1] ?> </option>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    <?php endif ?>
                 <?php endif ?>
+
             <?php endforeach ?>
             
             <div class="mt-5 mb-5">
