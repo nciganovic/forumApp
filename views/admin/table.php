@@ -26,7 +26,7 @@
                     </th>
                 </thead>
 
-                <tbody>
+                <tbody id="table-body">
                     <?php for($i = 0; $i < count($all_rows); $i++): ?>
                         <tr>
                         <?php for($y = 0; $y < count($all_rows[$i]) / 2; $y++): ?>
@@ -38,8 +38,9 @@
                         <td class="p-3">
                             <a href="index.php?page=row&width=1&table=<?= $_GET["table"] ?>&type=edit&id=<?=$all_rows[$i]["id"]?>"> Update </a>
                         </td>
-                        <td class="p-3">Delete</td>
-
+                        <td class="p-3"> 
+                            <a href="#" class="del" table="<?= $_GET["table"] ?>" id="<?= $all_rows[$i]["id"] ?>" > Delete </a>
+                        </td>
                         </tr>
                     <?php endfor ?>
                 </tbody>
@@ -51,3 +52,5 @@
         </div>
     </div>  
 </div>
+
+<script src="assets/js/deleteRow.js"></script>
