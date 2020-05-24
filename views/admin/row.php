@@ -71,11 +71,11 @@
                             <div class="form-group">
                                 <label><?= $cn[0] ?></label>
                                 <select class="form-control" name="<?= $cn[0] ?>">
+                                    <option value="0">  Select option </option>
                                     <?php foreach($fk_data as $data): ?>
                                         <!-- Set default selected items -->
                                         <?php if($cn[0] == "parentid"): ?>
                                             <!-- if rn is parentid then display text value -->
-            
                                             <?php if($data[0] == $edit_data[0][$cn[0]]): ?>
                                                 <option selected="selected" value="<?= $data[0] ?>"> <?= $data["text"] ?> </option>
                                             <?php else: ?>
@@ -100,6 +100,7 @@
                 <?php endforeach ?>
 
                 <input type="hidden" id="custId" name="table-name" value="<?= $_GET["table"] ?>">
+                <input type="hidden" id="custId" name="id" value="<?= $_GET["id"] ?>">
 
                 <div class="mt-5 mb-5">
                 <button type="submit" name="edit" class="btn btn-success">Edit</button>
