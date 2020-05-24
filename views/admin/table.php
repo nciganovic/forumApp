@@ -35,7 +35,9 @@
                             
                         <?php endfor ?>
 
-                        <td class="p-3">Update</td>
+                        <td class="p-3">
+                            <a href="index.php?page=row&width=1&table=<?= $_GET["table"] ?>&type=edit&id=<?=$all_rows[$i]["id"]?>"> Update </a>
+                        </td>
                         <td class="p-3">Delete</td>
 
                         </tr>
