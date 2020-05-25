@@ -12,7 +12,8 @@
             <ul>
                 <?php foreach($all_tables as $table): ?>
                     <li>
-                        <a href="index.php?page=table&width=1&table=<?= $table["Tables_in_forum"] ?>"> <?= $table["Tables_in_forum"] ?></a></li>
+                        <a href="index.php?page=table&width=1&table=<?= $table["Tables_in_forum"] ?>"> <?= $table["Tables_in_forum"] ?></a>
+                    </li>
                 <?php endforeach ?>
             </ul>
         </div>
