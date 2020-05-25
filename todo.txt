@@ -9,5 +9,5 @@
 10. pagination *
 11. admin panel
 12. txt log file
-13. profile page
+13. profile page *
 14. styling
