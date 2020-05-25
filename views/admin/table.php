@@ -4,6 +4,7 @@
     require_once "models/admin/get_col_names.php";
 
     $all_col_names = get_col_names($pdo, $_GET["table"]);
+    $all_rows = get_all_rows($pdo, $_GET["table"]);
 ?>
 <div class="container">
     <div class="row">
