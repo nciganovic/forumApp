@@ -6,6 +6,8 @@
     require_once "views/fixed/head.php";
     require_once "views/fixed/navbar.php";
 
+    require_once "models/log/insert_log.php";
+
     //Pages that dont have side bar and take 100% width
     if(isset($_GET["page"]) && isset($_GET["width"])){
         

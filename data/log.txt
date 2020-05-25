@@ -1,0 +1,4 @@
+localhost/forumApp/index.php?ctg=Business	1590410663
+localhost/forumApp/index.php?page=post&id=7	1590410665
+localhost/forumApp/index.php?ctg=New%20ctg	1590410677
+localhost/forumApp/index.php	1590410680
