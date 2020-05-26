@@ -61,14 +61,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                   $fullUrl = $link."&id=".$id."&key=".$rand;
 
+                  require_once "../mail/create_email.php";
+
+                  $from = "Forum team";
+                  $subject = "Confirm your email";
                   $message = "Here is the link for confirmation: ".$fullUrl;
 
-                  require_once "../../sendemail.php";
+                  $create_mail = create_email($from, $email, $subject, $message);
 
-                  /*echo json_encode([
-                    "msg" => "Account succesfully created! We sent you a confirmation link to your email. Click on it and you verification is complete.", 
-                    "result" => "1"
-                  ]);*/
+                  if($create_mail->send()){
+                    echo json_encode([
+                        "msg" => "Email sent successfuly.", 
+                        "result" => "1"
+                    ]);
+                  }else{
+                      echo json_encode([
+                          "msg" => "Email sent failed.", 
+                          "result" => "0"
+                      ]);
+                  }
+                  
                 }
                 else{
                   echo json_encode([
