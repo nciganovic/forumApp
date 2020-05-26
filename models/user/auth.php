@@ -53,7 +53,6 @@
                             
                         }
                         else{
-                            /*$_SESSION["message"] = "Password is invalid.";*/
                             echo(json_encode([
                                 "msg" => "Password is invalid.",
                                 "result" => "0"
@@ -61,7 +60,7 @@
                         }
                     }
                     else{
-                    /*$_SESSION["message"] = "Email doesn't exist.";*/
+                    
                         echo(json_encode([
                             "msg" => "This email doesnt exist.",
                             "result" => "0"
@@ -70,7 +69,7 @@
                 }
             }
             else{
-            /*$_SESSION["message"] = "Password is maximum 25 characters.";*/
+            
             echo(json_encode([
                 "msg" => "Wrong password.",
                 "result" => "0"
@@ -79,7 +78,7 @@
 
         }
         else{
-            /*$_SESSION["message"] = "Email is in wrong format.";*/
+           
             echo(json_encode([
                 "msg" => "Email is in wrong format.",
                 "result" => "0"
@@ -87,7 +86,7 @@
         }
         }
         else{
-        /*$_SESSION["message"] = "Email or password are not inserted.";*/
+        
         echo(json_encode([
             "msg" => "Email or password are not inserted.",
             "result" => "0"
