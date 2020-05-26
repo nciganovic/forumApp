@@ -1,3 +1,12 @@
+<?php 
+    require_once "models/menu/get_menu.php";
+
+    $basic_menu = get_menu(2, $pdo); //what everyone sees regardless of auth
+    $auth_menu = get_menu(1, $pdo);
+    $unauth_menu = get_menu(0, $pdo);
+
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg-dark">
   <div class="container">
     <a class="navbar-brand text-light" href="index.php">Forum</a>
@@ -7,32 +16,32 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php">Home</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link text-light" href="index.php?page=search">Search</a>
-        </li>
+        
+        <?php foreach($basic_menu as $b): ?>
+            <li class="nav-item active">
+                <a class="nav-link text-light" href="<?= $b["url"] ?>"> <?= $b["name"] ?> </a>
+            </li>
+        <?php endforeach ?>
+        
         <?php if(!isset($_SESSION["role"])): ?>
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="index.php?page=login&width=1">Login</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="index.php?page=register&width=1">Register</a>
-            </li>
+            <?php foreach($unauth_menu as $a): ?>
+                <li class="nav-item active">
+                    <a class="nav-link text-light" href="<?= $a["url"] ?>"> <?= $a["name"] ?> </a>
+                </li>
+            <?php endforeach ?>
         <?php else: ?>
             <?php if($_SESSION["role"] == "1"): ?>
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="index.php?page=dashboard&width=1">Dashboard</a>
-            </li>
+                <li class="nav-item active">
+                    <a class="nav-link text-light" href="index.php?page=dashboard&width=1">Dashboard</a>
+                </li>
             <?php endif ?>
 
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="index.php?page=profile&width=1"><?= $_SESSION["username"] ?></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link text-light" href="models/user/logout.php">Logout</a>
-            </li>
+            <?php foreach($auth_menu as $a): ?>
+                <li class="nav-item active">
+                    <a class="nav-link text-light" href="<?= $a["url"] ?>"> <?= $a["name"] ?> </a>
+                </li>
+            <?php endforeach ?>
+
         <?php endif ?>
         </ul>
     </div>
