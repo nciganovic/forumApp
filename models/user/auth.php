@@ -53,6 +53,15 @@
                             
                         }
                         else{
+                            require_once "../mail/create_email.php";
+
+                            $from = "Forum team";
+                            $subject = "Login failed";
+                            $message = "Login has failed at ".date('d/m/Y H:i:s', time());
+
+                            $create_mail = create_email($from, $email, $subject, $message);
+                            $create_mail->send();
+
                             echo(json_encode([
                                 "msg" => "Password is invalid.",
                                 "result" => "0"
