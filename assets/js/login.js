@@ -32,6 +32,14 @@ $(document).ready(function(){
             
         }
         else{
+            //Disable button for a few seconds
+            var fewSeconds = 4;
+            var btn = $(".btn");
+            btn.prop('disabled', true);
+            setTimeout(function(){
+                btn.prop('disabled', false);
+            }, fewSeconds*1000);
+
             //AJAX request
             $.ajax({
                 url:"models/user/auth.php",
