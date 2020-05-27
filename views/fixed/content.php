@@ -12,6 +12,10 @@
 
                     <?php include_once "views/posts/post.php"; ?>
 
+                <?php elseif($_GET["page"] == "author"): ?>
+
+                <?php include_once "views/author/author.php"; ?>
+
                 <?php endif ?>
 
             <?php else: ?>
