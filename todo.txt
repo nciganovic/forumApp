@@ -7,7 +7,14 @@
 7. mostrecent *
 9. createpost *
 10. pagination *
-11. admin panel
-12. txt log file
+11. admin panel * 
+12. txt log file *
 13. profile page *
 14. styling
+15. sorting
+16. status codes 
+17. current logged in users
+18. export author data (word)
+19. export website data (excel)
+20. docs
+21. auhtor page 
