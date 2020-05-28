@@ -1,6 +1,4 @@
-- sorting
 - status codes 
 - current logged in users
-- export website data (excel)
 - styling
 - docs
