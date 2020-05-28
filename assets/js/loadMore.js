@@ -10,6 +10,9 @@ $(document).ready(function(){
         var ctg = $(this).attr("ctg");
         console.log(ctg);
 
+        var order = $(this).attr("order");
+        console.log(order);
+
         $(this).attr("offset", Number(offset) + 2);
    
         $.ajax({
@@ -18,10 +21,11 @@ $(document).ready(function(){
             dataType: "json",
             data:{
                 offset:offset,
-                ctg:ctg
+                ctg:ctg,
+                order:order
             },
             success:function(data){
-                console.log(data);
+                console.log(data.posts);
                 if(data.result == "0"){
                     console.log(data.msg);
                 }
