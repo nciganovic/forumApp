@@ -3,7 +3,13 @@ require_once "../../config/connection.php";
 require_once "get_bio.php";
     
 // Create new COM object – word.application
-$word = new COM("word.application");
+try{
+    $word = new COM("word.application");
+}
+catch(Exception $e){
+    http_response_code(500);
+}
+
 
 // Hide MS Word application window
 $word->Visible = 0;
@@ -32,6 +38,8 @@ unset($word);
 
 header("Content-type: application/vnd.ms-word");
 header("Content-Disposition: attachment;Filename=document_name.doc");
+
+http_response_code(202);
 
 // Send file to browser
 readfile($filename);
