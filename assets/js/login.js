@@ -52,22 +52,16 @@ $(document).ready(function(){
                 success:function(data){
                     console.log(data);
                     
-                    if(data.result == "0"){
-                        $(".message").html(data.msg);
+                    if(data.msg == "Basic"){
+                        window.location.href = "http://localhost/forumApp/index.php";
                     }
                     else{
-                        if(data.msg == "Basic"){
-                            window.location.href = "http://localhost/forumApp/index.php";
-                        }
-                        else{
-                            window.location.href = "http://localhost/forumApp/index.php?page=dashboard&width=1";
-                        }
-                        
+                        window.location.href = "http://localhost/forumApp/index.php?page=dashboard&width=1";
                     }
-                    
+                        
                 },
                 error:function(err){
-                    console.log(err);
+                    $(".message").html(`<p class="text-danger">${err.responseJSON.msg}</p>`);
                 }
             })
         }

@@ -37,17 +37,17 @@
                             $_SESSION["role"] = $users[0]["role"];
                             $_SESSION["username"] = $users[0]["username"];                            
 
+                            http_response_code(202);
+
                             // Redirect depends on role
                             if($users[0]["role"] == 1){
                                 echo(json_encode([
-                                    "msg" => "Admin",
-                                    "result" => "1"
+                                    "msg" => "Admin"
                                 ]));
                             }
                             else{
                                 echo(json_encode([
-                                    "msg" => "Basic",
-                                    "result" => "1"
+                                    "msg" => "Basic"
                                 ]));
                             }
                             
@@ -60,45 +60,52 @@
                             $message = "Login has failed at ".date('d/m/Y H:i:s', time());
 
                             $create_mail = create_email($from, $email, $subject, $message);
-                            $create_mail->send();
 
-                            echo(json_encode([
-                                "msg" => "Password is invalid.",
-                                "result" => "0"
-                            ]));
+                            http_response_code(406);
+
+                            if($create_mail->send()){
+                                echo(json_encode([
+                                    "msg" => "Password is invalid. Email sent to notify user."
+                                ]));
+                            }
+                            else{
+                                echo(json_encode([
+                                    "msg" => "Password is invalid. Email failed to send."
+                                ]));
+                            }
                         }
                     }
                     else{
+                        http_response_code(406);
                     
                         echo(json_encode([
-                            "msg" => "This email doesnt exist.",
-                            "result" => "0"
+                            "msg" => "This email doesnt exist."
                         ]));
                     }
                 }
             }
             else{
+            http_response_code(406);
             
             echo(json_encode([
-                "msg" => "Wrong password.",
-                "result" => "0"
+                "msg" => "Wrong password."
             ]));
             }
 
         }
         else{
+            http_response_code(406);
            
             echo(json_encode([
-                "msg" => "Email is in wrong format.",
-                "result" => "0"
+                "msg" => "Email is in wrong format."
             ]));
         }
         }
         else{
-        
+        http_response_code(406);
+
         echo(json_encode([
-            "msg" => "Email or password are not inserted.",
-            "result" => "0"
+            "msg" => "Email or password are not inserted."
         ]));
         }
     }
