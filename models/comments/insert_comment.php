@@ -34,31 +34,39 @@ if(isset($_SESSION["userid"])){
 
             $stmt->execute();
 
+            http_response_code(201);
+
             echo(json_encode([
-                "id" => $pdo->lastInsertId(),
-                "parent_id" => $comment_id,
-                "username" => $_SESSION["username"],
-                "text" => $text,
-                "result" => "1"
+                    "id" => $pdo->lastInsertId(),
+                    "parent_id" => $comment_id,
+                    "username" => $_SESSION["username"],
+                    "text" => $text,
+                    "result" => "1"
                 ]));
         }
         catch(Exception $e){
+            http_response_code(500);
+
             echo(json_encode([
-                "msg" => $e,
-                "result" => "0"
+                    "msg" => $e,
+                    "result" => "0"
                 ]));
         }
     }
     else{
+        http_response_code(406);
+
         echo(json_encode([
-            "msg" => "Not all variables are set.",
-            "result" => "0"
+                "msg" => "Not all variables are set.",
+                "result" => "0"
             ]));
     }
 }
 else{
+    http_response_code(401);
+
     echo(json_encode([
-        "msg" => "You need to login in order to comment.",
-        "result" => "0"
+            "msg" => "You need to login in order to comment.",
+            "result" => "0"
         ]));
 }
