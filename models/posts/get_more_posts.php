@@ -13,25 +13,28 @@ if(isset($_GET["offset"]) && isset($_GET["order"])){
 
         $posts = get_first_n_posts($ctg, $limit, $offset, $_GET["order"], $pdo);
     
+        http_response_code(202);
+
         echo json_encode([
-            "posts" => $posts,
-            "result" => "1" 
+            "posts" => $posts
         ]); 
     }
     else{
 
         $posts = get_first_n_posts(null, $limit, $offset, $_GET["order"], $pdo);
 
+        http_response_code(202);
+
         echo json_encode([
-            "posts" => $posts,
-            "result" => "1" 
+            "posts" => $posts
         ]); 
     }
      
 }
 else{
+    http_response_code(406);
+
     echo json_encode([
-        "msg" => "Offset or Order parmeter does not exist.",
-        "result" => "0" 
+        "msg" => "Offset or Order parmeter does not exist."
     ]);   
 }

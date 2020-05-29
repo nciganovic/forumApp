@@ -25,19 +25,12 @@ $(document).ready(function(){
                 order:order
             },
             success:function(data){
-                console.log(data.posts);
-                if(data.result == "0"){
-                    console.log(data.msg);
+                if(data.posts.length == 0){
+                    $("#load-more").text("No more posts");
                 }
                 else{
-                    if(data.posts.length == 0){
-                        $("#load-more").text("No more posts");
-                    }
-                    else{
-                        showPosts(data.posts);
-                    }
+                    showPosts(data.posts);
                 }
-
             },
             error:function(err){
                 console.log(err);
