@@ -20,43 +20,37 @@ $(document).ready(function(){
                     postID:postID
                 },
                 success: function(data){
-                    if(data.result == "0"){
-                        alert(data.msg);
-                    }
-                    if(data.result == "1"){
-                        //alert(data.msg);
-                        var html = `<div class="com-and-rep mt-4">
-                                        <div class="comment">
-                                            <p class="mb-0"> ${data.id}, ${data.username}, now</p>
-                                            <p class="mb-0"> ${data.text} </p>
-                                            <a href="#" class="reply" commentid="${data.id}">reply</a>
-                                        </div>
-                            
-                                        <form id ="f-${data.id}" class="d-none comment-form">
-                                            <label for="exampleFormControlSelect2">Insert comment:</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            <button class="btn btn-success mt-3 cmt" formid="${data.id}" type="button">Send</button>
-                                            <button class="btn btn-danger mt-3 cancel" formid="${data.id}" type="button">Cancel</button>
-                                        </form>
-                                    
-                                        <div id ="r-${data.id}" class="replies pl-5 mt-4 border-left">
-                                            
-                                        </div>
-                                    </div>`;
-
-                        if(data.parent_id == "0"){
-                            $("#comments").append(html);
-                            $("#f-0 textarea").val("");
-                        }
-                        else{
-                            $(`#r-${data.parent_id}`).append(html);
-                            closeAndClearComments();
-                        }
+                    //alert(data.msg);
+                    var html = `<div class="com-and-rep mt-4">
+                                    <div class="comment">
+                                        <p class="mb-0"> ${data.id}, ${data.username}, now</p>
+                                        <p class="mb-0"> ${data.text} </p>
+                                        <a href="#" class="reply" commentid="${data.id}">reply</a>
+                                    </div>
                         
+                                    <form id ="f-${data.id}" class="d-none comment-form">
+                                        <label for="exampleFormControlSelect2">Insert comment:</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <button class="btn btn-success mt-3 cmt" formid="${data.id}" type="button">Send</button>
+                                        <button class="btn btn-danger mt-3 cancel" formid="${data.id}" type="button">Cancel</button>
+                                    </form>
+                                
+                                    <div id ="r-${data.id}" class="replies pl-5 mt-4 border-left">
+                                        
+                                    </div>
+                                </div>`;
+
+                    if(data.parent_id == "0"){
+                        $("#comments").append(html);
+                        $("#f-0 textarea").val("");
+                    }
+                    else{
+                        $(`#r-${data.parent_id}`).append(html);
+                        closeAndClearComments();
                     }
                 },
                 error: function(err){
-                    console.log(err);
+                    alert(err.responseJSON.msg);
                 }
             })
         }
