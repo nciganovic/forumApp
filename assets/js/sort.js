@@ -23,6 +23,7 @@ $(document).ready(function(){
                 if(data.result == "1"){
                     showFirstPosts(data.posts);
                     $("#loaded-posts").html("");
+                    $("#load-more").text("Load more");
                     $("#load-more").attr("offset", offset);
                 }
             },
