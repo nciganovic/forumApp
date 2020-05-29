@@ -18,7 +18,6 @@ if(isset($_POST["id"]) && isset($_POST["table"])){
 
         echo json_encode([
             "msg" => "Row deleted successfully.",
-            "result" => "1",
             "allrows" => $all_rows
         ]);
     }
@@ -27,7 +26,6 @@ if(isset($_POST["id"]) && isset($_POST["table"])){
      
         echo json_encode([
             "msg" => $e,
-            "result" => "0"
         ]);
     }
 }

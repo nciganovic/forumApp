@@ -18,12 +18,10 @@ $(document).ready(function(){
             },
             dataType:"json",
             success:function(data){
-                if(data.result == "1"){
-                    populateTableRows(data.allrows, table);
-                }
+                populateTableRows(data.allrows, table);
             },
             error:function(err){
-                console.log(err);
+                alert(err.responseJSON.msg);
             }
         });
 
