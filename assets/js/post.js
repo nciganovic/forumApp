@@ -40,7 +40,7 @@ $(document).ready(function(){
         }
         else{
             $.ajax({
-                url: "models/posts/insertpost.php",
+                url: "models/posts/insert_post.php",
                 method: "post",
                 dataType: "json",
                 data:{
@@ -49,20 +49,13 @@ $(document).ready(function(){
                     ctg:ctg
                 },
                 success: function(data){
-                    if(data.result == "0"){
-                        $(".message").append("<p class='text-center text-danger'>" + data.msg + "</p>");
-                    }
-                    else{
-                        window.location.href = "http://localhost/forumApp/index.php";
-                    }
+                    window.location.href = "http://localhost/forumApp/index.php";
                 },
                 error: function(err){
-                    console.log(err);
+                    $(".message").append("<p class='text-center text-danger'>" + err.responseJSON.msg + "</p>");
                 }
             })
         }
-
-
         console.log(title, desc, ctg);
     });
 });

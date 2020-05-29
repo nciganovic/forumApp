@@ -34,9 +34,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
 
                 if(count($errors) > 0){
+                    http_response_code(406);
+
                     echo(json_encode([
-                        "msg" => $errors,
-                        "result" => "0"
+                        "msg" => $errors
                     ]));
                 }
                 else{
@@ -48,40 +49,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $stmt->bindParam(":desc", $desc);
                         $stmt->bindParam(":uid", $_SESSION["userid"]);
                         $stmt->bindParam(":ctg", $ctg);
-                        $stmt->execute();    
+                        $stmt->execute(); 
+                        
+                        http_response_code(201);
 
                         echo(json_encode([
-                            "msg" => "success",
-                            "result" => "1"
+                            "msg" => "success"
                         ]));
                     }
                     catch(Exception $e){
+                        http_response_code(500);
+
                         echo(json_encode([
-                            "msg" => $e,
-                            "result" => "0"
+                            "msg" => $e
                         ]));
                     }
                     
                 }
             }
             else{
+                http_response_code(406);
+
                 echo(json_encode([
-                    "msg" => "Category is not selected",
-                    "result" => "0"
+                    "msg" => "Category is not selected"
                 ]));
             }
         }
         else{
+            http_response_code(406);
+
             echo(json_encode([
-                "msg" => "Description is not set or empty",
-                "result" => "0"
+                "msg" => "Description is not set or empty"
             ]));
         }
     }
     else{
+        http_response_code(406);
+
         echo(json_encode([
-            "msg" => "Title is not set or empty",
-            "result" => "0"
+            "msg" => "Title is not set or empty"
         ]));
     }
 }
