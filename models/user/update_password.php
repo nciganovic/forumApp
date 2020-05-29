@@ -10,33 +10,37 @@ if(isset($_POST["oldPassword"]) && isset($_POST["newPassword1"]) && isset($_POST
 
     $isValidPsw = true;
     if(strlen($newPassword1) > 25 || strlen($newPassword1) < 5 || strlen($newPassword2) > 25 || strlen($newPassword2) < 5){
+        http_response_code(406);
+        
         echo json_encode([
-            "msg" => "New password is invalid. Must be between 5 and 25 characters. -s",
-            "result" => "0"
+            "msg" => "New password is invalid. Must be between 5 and 25 characters."
         ]);
         $isValidPsw = false;
     }
 
     if($newPassword1 != $newPassword2){
+        http_response_code(406);
+        
         echo json_encode([
-            "msg" => "New passwords are not identical. -s",
-            "result" => "0"
+            "msg" => "New passwords are not identical."
         ]);
         $isValidPsw = false;
     }
 
     if($oldPassword == $newPassword2 || $oldPassword == $newPassword1){
+        http_response_code(406);
+        
         echo json_encode([
-            "msg" => "Current and new password are same. -s",
-            "result" => "0"
+            "msg" => "Current and new password are same."
         ]);
         $isValidPsw = false;
     }
 
     if(strlen($oldPassword) < 5 || strlen($oldPassword) > 25){
+        http_response_code(406);
+
         echo json_encode([
-            "msg" => "Wrong current password. -s",
-            "result" => "0"
+            "msg" => "Wrong current password."
         ]);
         $isValidPsw = false;
     }
@@ -67,37 +71,42 @@ if(isset($_POST["oldPassword"]) && isset($_POST["newPassword1"]) && isset($_POST
             try{
                 $stmt->execute();
 
+                http_response_code(202);
+
                 echo json_encode([
-                    "msg" => "Password successfuly changed.",
-                    "result" => "1"
+                    "msg" => "Password successfully changed."
                 ]);
             }
             catch(Exception $e){
+                http_response_code(500);
+
                 echo json_encode([
-                    "msg" => $e,
-                    "result" => "0"
+                    "msg" => $e
                 ]);
             }
         }
         else{
+            http_response_code(406);
+
             echo json_encode([
-                "msg" => "Current password is not correct.",
-                "result" => "0"
+                "msg" => "Current password is not correct."
             ]);
         }
     }
     else{
+        http_response_code(401);
+
         echo json_encode([
-            "msg" => "User is not authenticated.",
-            "result" => "0"
+            "msg" => "User is not authenticated."
         ]);
     }
     
 }
 else{
+    http_response_code(406);
+
     echo json_encode([
-        "msg" => "Not all data is provided",
-        "result" => "0"
+        "msg" => "Not all data is provided"
     ]);
 }
 

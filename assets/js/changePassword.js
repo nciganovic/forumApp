@@ -43,18 +43,16 @@ $(document).ready(function(){
                 },
                 dataType:"json",
                 success:function(data){
-                    console.log(data);
-
-                    if(data.result == "1"){
-                        $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`); 
-                    }
-                    else{
-                        $(".message").html(`<p class='text-danger text-center'>${data.msg}</p>`);
-                    }
+                    console.log(data);           
+                    $(".message").html(`<p class='text-success text-center'>${data.msg}</p>`); 
+                    $("#old-psw").val("");
+                    $("#new-psw-1").val("");
+                    $("#new-psw-2").val("");
 
                 },
                 error:function(err){
                     console.log(err);
+                    $(".message").html(`<p class='text-danger text-center'>${err.responseJSON.msg}</p>`); 
                 }
             })
         }
