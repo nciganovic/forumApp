@@ -14,6 +14,8 @@ if(isset($_POST["id"]) && isset($_POST["table"])){
 
         $all_rows = get_all_rows($pdo, $table);
 
+        http_response_code(200);
+
         echo json_encode([
             "msg" => "Row deleted successfully.",
             "result" => "1",
@@ -21,6 +23,8 @@ if(isset($_POST["id"]) && isset($_POST["table"])){
         ]);
     }
     catch(Exception $e){
+        http_response_code(500);
+     
         echo json_encode([
             "msg" => $e,
             "result" => "0"
