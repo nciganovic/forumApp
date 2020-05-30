@@ -11,24 +11,27 @@ if(isset($_GET["order"])){
 
         $fist_n_posts = get_first_n_posts($_GET["ctg"], $limit, 0, $order, $pdo);
 
+        http_response_code(202);
+
         echo json_encode([
-            "posts" => $fist_n_posts,
-            "result" => "1" 
+            "posts" => $fist_n_posts
         ]); 
     }
     else{
         $fist_n_posts = get_first_n_posts(null, $limit, 0, $order, $pdo);
 
+        http_response_code(202);
+
         echo json_encode([
-            "posts" => $fist_n_posts,
-            "result" => "1" 
+            "posts" => $fist_n_posts
         ]);
     }
 
 } 
 else{
+    http_response_code(406);
+
     echo json_encode([
-        "posts" => "Neighter set",
-        "result" => "0" 
+        "posts" => "Parameters are not set."
     ]); 
 }

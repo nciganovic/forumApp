@@ -20,15 +20,13 @@ $(document).ready(function(){
             },
             dataType:"json",
             success:function(data){
-                if(data.result == "1"){
-                    showFirstPosts(data.posts);
-                    $("#loaded-posts").html("");
-                    $("#load-more").text("Load more");
-                    $("#load-more").attr("offset", offset);
-                }
+                showFirstPosts(data.posts);
+                $("#loaded-posts").html("");
+                $("#load-more").text("Load more");
+                $("#load-more").attr("offset", offset);
             },
             error:function(err){
-                console.log(err);
+                console.log(err.responseJSON.msg);
             }
         });
     })
