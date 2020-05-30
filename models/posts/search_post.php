@@ -25,14 +25,16 @@ if(isset($_GET["search"]) && isset($_GET["offset"])){
     $stmt->execute();
     $all_posts = $stmt->fetchAll();
 
+    http_response_code(200);
+
     echo json_encode([
-        "posts" => $all_posts,
-        "result" => "1" 
+        "posts" => $all_posts
     ]);
 }
 else{
+    http_response_code(406);
+
     echo json_encode([
-        "msg" => "Search or Offset parmeter does not exist.",
-        "result" => "0" 
+        "msg" => "Search or Offset parmeter does not exist."
     ]);   
 }

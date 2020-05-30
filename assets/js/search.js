@@ -7,6 +7,7 @@ $(document).ready(function(){
 
         $("#loader").text("Load more");
         $(".load").attr("search", search);
+        $(".load").attr("offset", 2); // Change later to different number
         $("#search-txt").val("");
 
         if(search != ""){
@@ -20,20 +21,18 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     console.log(data);
-                
-                    if(data.result == "1"){
-                        if(data.posts.length == 0){
-                            showError(search, true);
-                            $("#loader").text("");
-                        }
-                        else{
-                            //Display load more link
-                            $(".load").removeClass("d-none");
-                            $(".load").addClass("d-block");
-
-                            showPosts(data.posts, true);
-                        }    
+                    
+                    if(data.posts.length == 0){
+                        showError(search, true);
+                        $("#loader").text("");
                     }
+                    else{
+                        //Display load more link
+                        $(".load").removeClass("d-none");
+                        $(".load").addClass("d-block");
+
+                        showPosts(data.posts, true);
+                    }    
                     
                 },
                 error:function(err){
@@ -64,15 +63,13 @@ $(document).ready(function(){
             },
             success:function(data){
                 console.log(data);
-            
-                if(data.result == "1"){
-                    if(data.posts.length == 0){
-                        showError(search, false);
-                    }
-                    else{
-                        showPosts(data.posts, false);
-                    }    
+        
+                if(data.posts.length == 0){
+                    showError(search, false);
                 }
+                else{
+                    showPosts(data.posts, false);
+                }    
                 
             },
             error:function(err){
