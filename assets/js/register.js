@@ -64,7 +64,7 @@ $(document).ready(function(){
                 success:function(data){
                     console.log(data);
                     
-                    $(".message").html(`<p class="text-center text-danger">${data.msg}</p>`);
+                    $(".message").html(`<p class="text-center text-success">${data.msg}</p>`);
                     
                     $("#username").val("");
                     $("#email").val("");
