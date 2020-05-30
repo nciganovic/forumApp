@@ -52,7 +52,7 @@ $(document).ready(function(){
             
             //AJAX request
             $.ajax({
-                url:"models/user/insertuser.php",
+                url:"models/user/insert_user.php",
                 method:"post",
                 data:{
                     username:username,
@@ -64,21 +64,15 @@ $(document).ready(function(){
                 success:function(data){
                     console.log(data);
                     
-                    if(data.result == "0"){
-                        $(".message").html(data.msg);
-                    }
-                    else{
-                        $(".message").html(data.msg);
-                        
-                        $("#username").val("");
-                        $("#email").val("");
-                        $("#password").val("");
-                        $("#password2").val("");
-                    }
+                    $(".message").html(`<p class="text-center text-danger">${data.msg}</p>`);
                     
+                    $("#username").val("");
+                    $("#email").val("");
+                    $("#password").val("");
+                    $("#password2").val("");
                 },
                 error:function(err){
-                    console.log(err);
+                    $(".message").html(`<p class="text-center text-danger">${err.responseJSON.msg}</p>`);
                 }
             })
         }
