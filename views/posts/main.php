@@ -24,14 +24,30 @@
 </div>
 <div id="first-posts">
     <?php foreach($first_n_posts as $post): ?>
-        <ul>
-            <li><?= $post["id"] ?></li>
-            <li><a href="index.php?page=post&id=<?= $post["id"] ?>"> <?= $post["title"] ?> </a></li>
-            <li><?= $post["name"] ?></li>
-            <li><?= $post["createdat"] ?></li>
-            <li><?= $post["username"] ?></li>
-            <li>Likes: <span class="l-<?= $post["id"] ?>"> <?= $post["likes"] ?> </span></li>
-        </ul>
+        <a class="text-dark text-decoration-none" href="index.php?page=post&id=<?= $post["id"] ?>">
+            <div class="card mt-4 mb-4">
+                <div class="card-header d-flex">
+                    <div class="img mr-3">
+                        <?php if($post["profileimg"]): ?>
+                            <img class="rounded-circle" width="25px" src="uploads/<?= $post["profileimg"] ?>" alt="profile"/>
+                        <?php else: ?>
+                            <img class="rounded-circle" width="25px" src="uploads/user.jpg" alt="profile"/>
+                        <?php endif ?>
+                    </div>
+                    <div class="username">
+                        <?= $post["username"] ?>
+                    </div>
+                    
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p><?= $post["title"] ?></p>
+                    <p> <i class="fas fa-star"></i> <?= $post["likes"] ?> </p>
+                    <footer class="blockquote-footer"><?= $post["name"] ?> , <?= $post["createdat"] ?></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </a>
     <?php endforeach ?>
 </div>
 <div id="loaded-posts" class="mt-5 mb-5"></div>
