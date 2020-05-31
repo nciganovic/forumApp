@@ -18,7 +18,7 @@ $(document).ready(function(){
             success: function(data){
                 console.log(data.msg);
                 if(data.msg == "upvoted"){
-                    currentTag.text("Already upvoted");
+                    currentTag.children().attr("class", "fas fa-star");
 
                     likesCount = $(`.l-${postID}`).text();
                     var addLike = Number(likesCount) + 1;
