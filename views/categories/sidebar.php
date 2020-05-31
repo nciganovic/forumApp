@@ -3,7 +3,7 @@
 ?>
 
 <ul>
-<div class="list-group  mt-5">
+<div class="list-group  mt-4">
     <?php foreach($allCategories as $category): ?>
         <?php if(isset($_GET["ctg"])): ?>
             <?php if($_GET["ctg"] == $category["name"]): ?>
