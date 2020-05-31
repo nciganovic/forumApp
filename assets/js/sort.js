@@ -42,10 +42,10 @@ function showFirstPosts(data){
                             <div class="img mr-3"> `
 
         if(d["profileimg"]){
-        html += `<img class="rounded-circle" width="25px" src="uploads/${d["profileimg"]}" alt="profile"/>`
+            html += `<img class="rounded-circle" width="25px" src="uploads/${d["profileimg"]}" alt="profile"/>`
         }
         else{
-        html += `<img class="rounded-circle" width="25px" src="uploads/user.jpg" alt="profile"/>`
+            html += `<img class="rounded-circle" width="25px" src="uploads/user.jpg" alt="profile"/>`
         }
                                 
         html +=`</div>
