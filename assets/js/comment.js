@@ -4,7 +4,7 @@ $(document).ready(function(){
     $(document).on('click','.cmt',function(){
         var formID = $(this).attr("formid");
         var text = $(`#f-${formID} textarea`).val();
-        var postID = $("h1").attr("postid");
+        var postID = $("h2").attr("postid");
 
         text = text.trim();
         console.log(formID,text, postID);
@@ -31,7 +31,7 @@ $(document).ready(function(){
                                     <form id ="f-${data.id}" class="d-none comment-form">
                                         <label for="exampleFormControlSelect2">Insert comment:</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        <button class="btn btn-success mt-3 cmt" formid="${data.id}" type="button">Send</button>
+                                        <button class="btn btn-success mt-3 mr-3 cmt" formid="${data.id}" type="button">Send</button>
                                         <button class="btn btn-danger mt-3 cancel" formid="${data.id}" type="button">Cancel</button>
                                     </form>
                                 

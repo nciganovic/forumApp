@@ -21,7 +21,7 @@ require_once "models/upvotes/get_all_user_upvotes.php";
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
-            <h2><?= $post[0]["title"] ?></h2>
+            <h2 postid="<?= $post[0]["id"] ?>"> <?= $post[0]["title"] ?> </h2>
             <p> <?= $post[0]["description"] ?> </p>
             <p> 
                 <!-- START Upvote -->
@@ -78,7 +78,7 @@ require_once "models/upvotes/get_all_user_upvotes.php";
             <form id ="f-<?= $comment["id"] ?>" class="d-none comment-form">
                 <label for="exampleFormControlSelect2">Insert comment:</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <button class="btn btn-success mt-3 cmt" formid="<?= $comment["id"] ?>" type="button">Send</button>
+                <button class="btn btn-success mt-3 mr-3 cmt" formid="<?= $comment["id"] ?>" type="button">Send</button>
                 <button class="btn btn-danger mt-3 cancel" formid="<?= $comment["id"] ?>" type="button">Cancel</button>
             </form>
         

@@ -40,8 +40,7 @@ if(isset($_SESSION["userid"])){
                     "id" => $pdo->lastInsertId(),
                     "parent_id" => $comment_id,
                     "username" => $_SESSION["username"],
-                    "text" => $text,
-                    "result" => "1"
+                    "text" => $text
                 ]));
         }
         catch(Exception $e){
@@ -49,7 +48,6 @@ if(isset($_SESSION["userid"])){
 
             echo(json_encode([
                     "msg" => $e,
-                    "result" => "0"
                 ]));
         }
     }
@@ -57,8 +55,7 @@ if(isset($_SESSION["userid"])){
         http_response_code(406);
 
         echo(json_encode([
-                "msg" => "Not all variables are set.",
-                "result" => "0"
+                "msg" => "Not all variables are set."
             ]));
     }
 }
@@ -66,7 +63,6 @@ else{
     http_response_code(401);
 
     echo(json_encode([
-            "msg" => "You need to login in order to comment.",
-            "result" => "0"
+            "msg" => "You need to login in order to comment."
         ]));
 }
