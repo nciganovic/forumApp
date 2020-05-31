@@ -7,7 +7,7 @@ $(document).ready(function(){
 
         $("#loader").text("Load more");
         $(".load").attr("search", search);
-        $(".load").attr("offset", 2); // Change later to different number
+        $(".load").attr("offset", 10); // Change later to different number
         $("#search-txt").val("");
 
         if(search != ""){
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
     $(".load").click(function(e){
         e.preventDefault();
-        const step = 2;
+        const step = 10;
 
         var search = $(this).attr("search");
         var offset = $(this).attr("offset");

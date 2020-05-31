@@ -1,5 +1,5 @@
 <?php
-    $limit = 2;
+    $limit = 10;
 
     require_once "models/posts/get_first_n_posts.php";
 
@@ -55,9 +55,9 @@
 <div id="loaded-posts"></div>
 
 <?php if(isset($_GET["ctg"])): ?>
-    <p class="mt-5 mb-5"><a href="#" id="load-more" order="n" ctg="<?= $_GET["ctg"] ?>" offset="2">Load more</a></p>
+    <p class="mt-5 mb-5"><a href="#" id="load-more" order="n" ctg="<?= $_GET["ctg"] ?>" offset="10">Load more</a></p>
 <?php else: ?>
-    <p class="mt-5 mb-5"><a href="#" id="load-more" offset="2" order="n">Load more</a></p>
+    <p class="mt-5 mb-5"><a href="#" id="load-more" offset="10" order="n">Load more</a></p>
 <?php endif ?>    
 
 

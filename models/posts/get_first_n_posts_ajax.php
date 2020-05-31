@@ -2,7 +2,7 @@
 require_once "../../config/connection.php";
 require_once "get_first_n_posts.php";
 
-$limit = 2;
+$limit = 10;
 
 if(isset($_GET["order"])){
     $order = $_GET["order"];

@@ -1,5 +1,5 @@
 <?php 
-$limit = 2;
+$limit = 10;
 
 require_once "../../config/connection.php";
 require_once "get_first_n_posts.php";

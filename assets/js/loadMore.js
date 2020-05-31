@@ -13,7 +13,7 @@ $(document).ready(function(){
         var order = $(this).attr("order");
         console.log(order);
 
-        $(this).attr("offset", Number(offset) + 2);
+        $(this).attr("offset", Number(offset) + 10);
    
         $.ajax({
             url: "models/posts/get_more_posts.php",
