@@ -5,40 +5,58 @@ require_once "models/comments/get_replies.php";
 require_once "models/upvotes/get_all_user_upvotes.php";
 ?>
 
-<h1 postid="<?= $_GET["id"] ?>" class="text-center"><?= $post[0]["title"] ?></h1>
-<ul>
-    <li><?= $post[0]["id"] ?></li>
-    <li><a href="index.php?page=post&id=<?= $post[0]["id"] ?>"> <?= $post[0]["title"] ?> </a></li>
-    <li><?= $post[0]["name"] ?></li>
-    <li><?= $post[0]["createdat"] ?></li>
-    <li><?= $post[0]["username"] ?></li>
-    <li>Likes: <span class="l-<?= $post[0]["id"] ?>"> <?= $post[0]["likes"] ?> </span></li>
-</ul>
+<div class="card mt-4 mb-4">
+    <div class="card-header d-flex">
+        <div class="img mr-3">
+            <?php if($post[0]["profileimg"]): ?>
+                <img class="rounded-circle" width="25px" src="uploads/<?= $post[0]["profileimg"] ?>" alt="profile"/>
+            <?php else: ?>
+                <img class="rounded-circle" width="25px" src="uploads/user.jpg" alt="profile"/>
+            <?php endif ?>
+        </div>
+        <div class="username">
+            <?= $post[0]["username"] ?>
+        </div>
+        
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <h2><?= $post[0]["title"] ?></h2>
+            <p> <?= $post[0]["description"] ?> </p>
+            <p> 
+                <!-- START Upvote -->
+                <?php if(isset($_SESSION["userid"])): ?>
+                    <?php $is_upvoted = false ?>
+                    <?php foreach($upvoted_posts as $up): ?>
+                        <?php if($up["postid"] == $post[0]["id"]): ?>
+                            <?php $is_upvoted = true ?>
+                            <?php break ?>
+                        <?php endif ?>
+                    <?php endforeach ?>
 
-<!-- START Upvote -->
-<?php if(isset($_SESSION["userid"])): ?>
-    <?php $is_upvoted = false ?>
-    <?php foreach($upvoted_posts as $up): ?>
-        <?php if($up["postid"] == $post[0]["id"]): ?>
-            <?php $is_upvoted = true ?>
-            <?php break ?>
-        <?php endif ?>
-    <?php endforeach ?>
+                    <?php if(!$is_upvoted): ?>  
+                        <?php if($post[0]["userid"] != $_SESSION["userid"]): ?>
+                            <!--<li><a href="#" class="upvote" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>">Upvote</a></li> -->
+                            <a href="#" class="upvote text-dark text-decoration-none" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>"> <i class="far fa-star"></i> </a>
+                        <?php else: ?>
+                            <i class="fas fa-star"></i> 
+                        <?php endif ?>
+                    <?php else: ?>
+                        <!--<li><a href="#" >Already upvoted</a></li>-->
+                        <a href="#" class="text-dark text-decoration-none"> <i class="fas fa-star"></i> </a>
+                    <?php endif ?>
 
-    <?php if(!$is_upvoted): ?>  
-        <?php if($post[0]["userid"] != $_SESSION["userid"]): ?>
-            <li><a href="#" class="upvote" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>">Upvote</a></li>
-        <?php else: ?>
-            <li><a href="#">Your post</a></li>
-        <?php endif ?>
-    <?php else: ?>
-        <li><a href="#" >Already upvoted</a></li>
-    <?php endif ?>
-
-<?php else: ?>
-    <li><a href="#" class="set-alert">Upvote</a></li>
-<?php endif ?>
-<!-- END Upvote -->
+                <?php else: ?>
+                    <a href="#" class="set-alert text-dark text-decoration-none"> <i class="far fa-star"></i> </a>
+                <?php endif ?>
+                <!-- END Upvote -->
+ 
+                <span class="l-<?= $post[0]["id"] ?>"> <?= $post[0]["likes"] ?> </span>
+             </p>
+            <footer class="blockquote-footer"><?= $post[0]["name"] ?> , <?= $post[0]["createdat"] ?></footer>
+        </blockquote>
+    </div>
+</div>
 
 <form id="f-0" class="mt-5">
     <label for="exampleFormControlSelect2">Insert comment:</label>
