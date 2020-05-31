@@ -1,5 +1,5 @@
 <?php 
-$sql = "SELECT text FROM bio";
+$sql = "SELECT text, img FROM bio";
 $stmt = $pdo->query($sql);
 $stmt->execute();
 $bio = $stmt->fetchAll();
