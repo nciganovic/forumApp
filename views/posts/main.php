@@ -55,9 +55,13 @@
 <div id="loaded-posts"></div>
 
 <?php if(isset($_GET["ctg"])): ?>
-    <p class="mt-5 mb-5"><a href="#" id="load-more" order="n" ctg="<?= $_GET["ctg"] ?>" offset="10">Load more</a></p>
+    <div class="mt-5 mb-5">
+        <a href="#" id="load-more" class="btn btn-info w-100" order="n" ctg="<?= $_GET["ctg"] ?>" offset="10">Load more</a>
+    </div>
 <?php else: ?>
-    <p class="mt-5 mb-5"><a href="#" id="load-more" offset="10" order="n">Load more</a></p>
+    <div class="mt-5 mb-5">
+        <a href="#" id="load-more" class="btn btn-info w-100" offset="10" order="n">Load more</a>
+    </div>
 <?php endif ?>    
 
 

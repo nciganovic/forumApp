@@ -8,7 +8,9 @@
         
     </div>
 
-    <p class="mt-5 mb-5"><a href="#" id="loader" class="d-none load" offset="10" search="">Load more</a></p>
+    <div class="mt-5 mb-5">
+        <a href="#" id="loader" class="d-none load btn btn-info" offset="10" search="">Load more</a>
+    </div>
 </div>
 
 <script src="assets/js/search.js"></script>
