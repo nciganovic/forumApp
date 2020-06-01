@@ -1,19 +1,19 @@
 #page-container {
     position: relative;
     min-height: 100vh;
-  }
-  
+} 
 #content-wrap {
-    padding-bottom: 120px;    /* Footer height */
-}
-  
+    padding-bottom: 80px;    /* Footer height */
+} 
 #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 120px;            /* Footer height */
+    height: 80px;            /* Footer height */
 }
-
 .bg-comment{
     background-color: rgb(210, 212, 214);
+}
+.font-20{
+    font-size: 2rem;
 }
