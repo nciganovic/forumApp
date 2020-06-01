@@ -13,3 +13,7 @@
     width: 100%;
     height: 120px;            /* Footer height */
 }
+
+.bg-comment{
+    background-color: rgb(210, 212, 214);
+}
