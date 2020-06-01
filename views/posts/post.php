@@ -68,7 +68,17 @@ require_once "models/upvotes/get_all_user_upvotes.php";
 
         <div class="com-and-rep mt-4">
             <div class="comment">
-                <small class="mb-0"><?= $comment["username"] ?> <?= $comment["createdat"] ?></small>
+                <div class="d-flex">
+
+                <?php if($comment["profileimg"]): ?>
+                    <img class="rounded-circle m-2" width="25px" src="uploads/<?= $comment["profileimg"] ?>" alt="profile"/>
+                <?php else: ?>
+                    <img class="rounded-circle m-2" width="25px" src="uploads/user.jpg" alt="profile"/>
+                <?php endif ?>
+                    
+                    <small class="mb-0 mt-2"><?= $comment["username"] ?> <?= $comment["createdat"] ?></small>
+                </div>               
+                
                 <p class="mb-0 p-3 bg-comment rounded"> <?= $comment["text"] ?></p>
                 <a href="#" class="reply" commentid="<?= $comment["id"] ?>"><small>reply</small></a>
             </div>

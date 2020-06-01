@@ -33,14 +33,18 @@ if(isset($_SESSION["userid"])){
             }
 
             $stmt->execute();
+            $last_insert = $pdo->lastInsertId();
+
+            require_once "../user/get_user_data.php";
 
             http_response_code(201);
 
             echo(json_encode([
-                    "id" => $pdo->lastInsertId(),
+                    "id" => $last_insert,
                     "parent_id" => $comment_id,
                     "username" => $_SESSION["username"],
-                    "text" => $text
+                    "text" => $text,
+                    "profileimg" => $user[0]["profileimg"]
                 ]));
         }
         catch(Exception $e){

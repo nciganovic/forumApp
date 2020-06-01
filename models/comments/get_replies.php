@@ -1,6 +1,6 @@
 <?php
 function get_replies($parent_id, $pdo){
-    $sql = "SELECT c.id, u.username, c.parentid, c.createdat, c.text 
+    $sql = "SELECT c.id, u.username, u.profileimg, c.parentid, c.createdat, c.text 
             FROM comments c INNER JOIN users u ON c.userid = u.id 
             WHERE c.parentid = :pid 
             ORDER BY c.createdat";
@@ -17,9 +17,20 @@ function get_replies($parent_id, $pdo){
         foreach($com as $c){
             echo '<div class="com-and-rep mt-4">';
                 echo '<div class="comment">';
-                    echo '<small class="mb-0">'.$c["username"].'  '.$c["createdat"].'</small>';
-                    echo '<p class="mb-0 p-3 bg-comment rounded">'.$c["text"].'</p>';
-                    echo '<a href="#" class="reply" commentid="'.$c["id"].'"><small>reply</small></a>';
+                    echo '<div class="d-flex">';
+
+                    if($c["profileimg"]){
+                        echo '<img class="rounded-circle m-2" width="25px" src="uploads/' . $c["profileimg"] . '" alt="profile"/>';
+                    }
+                    else{
+                        echo '<img class="rounded-circle m-2" width="25px" src="uploads/user.jpg" alt="profile"/>';
+                    }
+                        
+                        echo '<small class="mb-0 mt-2">'.$c["username"].'  '.$c["createdat"].'</small>';
+                    echo '</div>';
+                        echo '<p class="mb-0 p-3 bg-comment rounded">'.$c["text"].'</p>';
+                        echo '<a href="#" class="reply" commentid="'.$c["id"].'"><small>reply</small></a>';
+                   
                 echo '</div>';
 
                 echo '<form id ="f-'.$c["id"].'" class="d-none comment-form">';
