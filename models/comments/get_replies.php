@@ -17,9 +17,9 @@ function get_replies($parent_id, $pdo){
         foreach($com as $c){
             echo '<div class="com-and-rep mt-4">';
                 echo '<div class="comment">';
-                    echo '<p class="mb-0">'.$c["id"].','.$c["username"].','.$c["createdat"].'</p>';
-                    echo '<p class="mb-0">'.$c["text"].'</p>';
-                    echo '<a href="#" class="reply" commentid="'.$c["id"].'">reply</a>';
+                    echo '<small class="mb-0">'.$c["username"].'  '.$c["createdat"].'</small>';
+                    echo '<p class="mb-0 p-3 bg-comment rounded">'.$c["text"].'</p>';
+                    echo '<a href="#" class="reply" commentid="'.$c["id"].'"><small>reply</small></a>';
                 echo '</div>';
 
                 echo '<form id ="f-'.$c["id"].'" class="d-none comment-form">';

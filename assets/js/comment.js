@@ -23,9 +23,9 @@ $(document).ready(function(){
                     //alert(data.msg);
                     var html = `<div class="com-and-rep mt-4">
                                     <div class="comment">
-                                        <p class="mb-0"> ${data.id}, ${data.username}, now</p>
-                                        <p class="mb-0"> ${data.text} </p>
-                                        <a href="#" class="reply" commentid="${data.id}">reply</a>
+                                        <small class="mb-0"> ${data.username} now</small>
+                                        <p class="mb-0 p-3 bg-comment rounded"> ${data.text} </p>
+                                        <a href="#" class="reply" commentid="${data.id}"><small>reply</small></a>
                                     </div>
                         
                                     <form id ="f-${data.id}" class="d-none comment-form">

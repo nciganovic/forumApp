@@ -36,13 +36,11 @@ require_once "models/upvotes/get_all_user_upvotes.php";
 
                     <?php if(!$is_upvoted): ?>  
                         <?php if($post[0]["userid"] != $_SESSION["userid"]): ?>
-                            <!--<li><a href="#" class="upvote" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>">Upvote</a></li> -->
                             <a href="#" class="upvote text-dark text-decoration-none" post="<?= $post[0]["id"] ?>" user="<?= $_SESSION["userid"] ?>"> <i class="far fa-star"></i> </a>
                         <?php else: ?>
                             <i class="fas fa-star"></i> 
                         <?php endif ?>
                     <?php else: ?>
-                        <!--<li><a href="#" >Already upvoted</a></li>-->
                         <a href="#" class="text-dark text-decoration-none"> <i class="fas fa-star"></i> </a>
                     <?php endif ?>
 
@@ -70,9 +68,9 @@ require_once "models/upvotes/get_all_user_upvotes.php";
 
         <div class="com-and-rep mt-4">
             <div class="comment">
-                <p class="mb-0"> <?= $comment["id"] ?>,<?= $comment["username"] ?>, <?= $comment["createdat"] ?></p>
-                <p class="mb-0"> <?= $comment["text"] ?></p>
-                <a href="#" class="reply" commentid="<?= $comment["id"] ?>">reply</a>
+                <small class="mb-0"><?= $comment["username"] ?> <?= $comment["createdat"] ?></small>
+                <p class="mb-0 p-3 bg-comment rounded"> <?= $comment["text"] ?></p>
+                <a href="#" class="reply" commentid="<?= $comment["id"] ?>"><small>reply</small></a>
             </div>
 
             <form id ="f-<?= $comment["id"] ?>" class="d-none comment-form">
