@@ -1,5 +1,5 @@
 <?php 
-    require_once "models/user/getuser.php";
+    require_once "models/user/get_user.php";
 ?>
 <div class="container">
     <div class="row mt-3">
