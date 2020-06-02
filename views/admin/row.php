@@ -2,9 +2,12 @@
     require_once "models/user/redirect_unadmin.php";
     require_once "models/admin/get_col_names.php";
     require_once "models/admin/get_fk_data.php";
-    require_once "models/admin/get_edit_data.php";
 
     $all_col_names = get_col_names($pdo, $_GET["table"]);
+
+    if(count($all_col_names) == 0){
+        header("Location: http://localhost/forumApp/index.php");
+    }
 ?>
 
 <div class="container">
@@ -55,6 +58,7 @@
                 </div>
             
             <?php elseif($_GET["type"] == "edit"): ?>
+                <?php require_once "models/admin/get_edit_data.php"; ?>
 
                 <?php foreach($all_col_names as $cn): ?>
 

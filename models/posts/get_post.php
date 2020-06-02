@@ -12,4 +12,11 @@ if(isset($_GET["id"])){
     $stmt->bindParam(":id", $_GET["id"]);
     $stmt->execute();
     $post = $stmt->fetchAll();
+
+    if(count($post) == 0){
+        header("Location: http://localhost/forumApp/index.php");
+    }
+}
+else{
+    header("Location: http://localhost/forumApp/index.php");
 }

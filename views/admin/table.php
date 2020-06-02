@@ -3,8 +3,22 @@
     require_once "models/admin/get_all_rows.php";
     require_once "models/admin/get_col_names.php";
 
-    $all_col_names = get_col_names($pdo, $_GET["table"]);
-    $all_rows = get_all_rows($pdo, $_GET["table"]);
+    if(isset($_GET["table"])){
+        try{
+            $all_col_names = get_col_names($pdo, $_GET["table"]);
+            $all_rows = get_all_rows($pdo, $_GET["table"]);
+        }
+        catch(Exception $e){
+            header("Location: http://localhost/forumApp/index.php");
+        }
+        
+        if(count($all_col_names) == 0 || count($all_rows) == 0){
+            header("Location: http://localhost/forumApp/index.php");
+        }
+    }
+    else{
+        header("Location: http://localhost/forumApp/index.php");
+    }   
 ?>
 <div class="container">
     <div class="row">
