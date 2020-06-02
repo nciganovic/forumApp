@@ -6,8 +6,8 @@ $(document).ready(function(){
         var offset = 0;
 
         $("#loader").text("Load more");
-        $(".load").attr("search", search);
-        $(".load").attr("offset", 10); // Change later to different number
+        $("#loader").attr("search", search);
+        $("#loader").attr("offset", 10); // Change later to different number
         $("#search-txt").val("");
 
         if(search != ""){
@@ -24,12 +24,13 @@ $(document).ready(function(){
                     
                     if(data.posts.length == 0){
                         showError(search, true);
-                        $("#loader").text("");
+                        $("#loader").addClass("d-none");
+                        $("#loader").removeClass("d-block");
                     }
                     else{
                         //Display load more link
-                        $(".load").removeClass("d-none");
-                        $(".load").addClass("d-block");
+                        $("#loader").removeClass("d-none");
+                        $("#loader").addClass("d-block");
 
                         showPosts(data.posts, true);
                     }    
