@@ -37,11 +37,10 @@ if(isset($_POST["create"])){
         header("Location: http://localhost/forumApp/index.php?page=table&width=1&table=" . $_POST["table-name"]);
     }
     catch(Exception $e){
-        echo($e);
+        echo("Failed to create row. Some fields are left with bad type of data or blank.");
     }
 }
 else if(isset($_POST["edit"])){
-    var_dump($all_post_values);
 
     $query = "UPDATE " . $_POST["table-name"] . " SET ";
 
@@ -60,7 +59,6 @@ else if(isset($_POST["edit"])){
         header("Location: http://localhost/forumApp/index.php?page=table&width=1&table=" . $_POST["table-name"]);
     }
     catch(Exception $e){
-        echo($e . "<br/>");
-        echo($query . "<br/>");
+        echo("Failed to create row. Some fields are left with bad type of data or blank.");
     }
 }
