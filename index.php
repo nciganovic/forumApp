@@ -62,6 +62,9 @@
             require_once "views/admin/row.php";
 
         }
+        else{
+            header("Location: http://localhost/forumApp/index.php");
+        }
     
     //Pages that user sidebar   
     }else{

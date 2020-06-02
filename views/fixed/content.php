@@ -14,7 +14,11 @@
 
                 <?php elseif($_GET["page"] == "author"): ?>
 
-                <?php include_once "views/author/author.php"; ?>
+                    <?php include_once "views/author/author.php"; ?>
+
+                <?php else: ?>
+
+                    <?php header("Location: http://localhost/forumApp/index.php"); ?>
 
                 <?php endif ?>
 
