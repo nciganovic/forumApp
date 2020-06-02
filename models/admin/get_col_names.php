@@ -1,7 +1,6 @@
 <?php
-
 function get_col_names($pdo, $table_name){
-	$table = "forum";
+	$db = "forum";
 
 	$sql = "SELECT COLUMN_NAME 
 			FROM INFORMATION_SCHEMA.COLUMNS
@@ -10,7 +9,7 @@ function get_col_names($pdo, $table_name){
 
 	$stmt = $pdo->prepare($sql);
 	$stmt->bindParam(":p", $table_name);
-	$stmt->bindParam(":f", $table);
+	$stmt->bindParam(":f", $db);
 	$stmt->execute();
 	$all_row_names = $stmt->fetchAll();
 
