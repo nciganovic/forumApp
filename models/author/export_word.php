@@ -1,46 +1,26 @@
 <?php
+
 require_once "../../config/connection.php";
 require_once "get_bio.php";
-    
-// Create new COM object – word.application
-try{
-    $word = new COM("word.application");
-}
-catch(Exception $e){
-    http_response_code(500);
-}
+require_once '../../vendor/autoload.php';
 
+// Creating the new document...
+$phpWord = new \PhpOffice\PhpWord\PhpWord();
 
-// Hide MS Word application window
-$word->Visible = 0;
+/* Note: any element you append to a document must reside inside of a Section. */
 
-//Create new document
-$word->Documents->Add();
+// Adding an empty Section to the document...
+$section = $phpWord->addSection();
+// Adding Text element to the Section having font styled by default...
 
-// Define page margins
-$word->Selection->PageSetup->LeftMargin = '2';
-$word->Selection->PageSetup->RightMargin = '2';
-
-// Define font settings
-$word->Selection->Font->Name = 'Arial';
-$word->Selection->Font->Size = 12;
-
-// Add text
-$word->Selection->TypeText($bio[0]["text"]);
-
-// Save document
-$filename = tempnam(sys_get_temp_dir(), "word");
-$word->Documents[1]->SaveAs($filename);
-
-// Close and quit
-$word->quit();
-unset($word);
+// Adding Text element with font customized inline...
+$section->addText(
+    $bio[0]["text"]
+);
 
 header("Content-type: application/vnd.ms-word");
-header("Content-Disposition: attachment;Filename=document_name.doc");
+header("Content-Disposition: attachment;Filename=author.doc");
 
-http_response_code(202);
-
-// Send file to browser
-readfile($filename);
-unlink($filename);
+// Saving the document as OOXML file...
+$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+$objWriter->save('php://output');

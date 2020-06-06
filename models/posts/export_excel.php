@@ -1,13 +1,13 @@
 <?php 
 require_once "../../config/connection.php";
 require_once "get_all_posts.php";
+require '../../vendor/autoload.php';
 
-$excel_app = new COM("excel.application") or Die ("Konekcija sa Excel-om nije bila uspešna!");
-$Workbook = $excel_app->Workbooks->Add();
-$Worksheet = $Workbook->Worksheets('Sheet1');
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-//Set Width & Height
-$excel_app->ActiveSheet->Range("A1:G1")->ColumnWidth = 20.0;
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
 
 $excel_alphabet = ["A", "B", "C", "D", "E", "F", "G"]; //for creating A1, A2 etc..
 
@@ -24,10 +24,8 @@ foreach($allPosts[0] as $key => $value){
     }
 
     $excel_col = $excel_alphabet[$idx] . $current_row;
-
-    $polje = $Worksheet->Range($excel_col);
-    $polje->activate;	
-    $polje->Value = $key;
+    
+    $sheet->setCellValue($excel_col, $key);
 
     $idx += 1;
     $step += 1;
@@ -39,43 +37,18 @@ $current_row += 1;
 foreach($allPosts as $post){
 
     for($i = 0; $i < count($excel_alphabet); $i++){
-
+        
         $excel_col = $excel_alphabet[$i] . $current_row;
 
-        $polje = $Worksheet->Range($excel_col);
-        $polje->activate;	
-        $polje->Value = $post[$i];
-
+        $sheet->setCellValue($excel_col, $post[$i]);
     }
 
     $current_row += 1;
 
 }
 
-// Save document
-$filename = tempnam(sys_get_temp_dir(), "xls");
-try{
-    $Workbook->_SaveAs($filename, -4143);
-}
-catch(Exception $e){
-    die("Exporting failed.");
-}
-
-$Workbook->Save();
-$Workbook->Saved = true;
-$Workbook->Close;
-
-unset($Worksheet);
-unset($Workbook);	
-
-$excel_app->Workbooks->Close();
-$excel_app->Quit();
-
-unset($excel_app);
-
 header("Content-type: application/vnd.ms-excel");
-header("Content-Disposition: attachment;Filename=all-posts.xls");
+header("Content-Disposition: attachment;Filename=posts.xls");
 
-// Send file to browser
-readfile($filename);
-unlink($filename);
+$writer = new Xlsx($spreadsheet);
+$writer->save('php://output');
