@@ -10,14 +10,14 @@ if(isset($_GET["table"]) && isset($_GET["id"])){
         $edit_data = $stmt->fetchAll();
 
         if(count($edit_data) == 0){
-            header("Location: http://localhost/forumApp/index.php");
+            die("This row doesn't exist.");
         }
     }
     catch(Exception $e){
-        header("Location: http://localhost/forumApp/index.php");
+        die("This table doesn't exist.");
     }
     
 }
 else{
-    header("Location: http://localhost/forumApp/index.php");
+    die("Table parmeter is not set.");
 }

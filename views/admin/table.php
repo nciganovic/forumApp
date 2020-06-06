@@ -9,15 +9,15 @@
             $all_rows = get_all_rows($pdo, $_GET["table"]);
         }
         catch(Exception $e){
-            header("Location: http://localhost/forumApp/index.php");
+            die("Table not found.");
         }
         
         if(count($all_col_names) == 0 || count($all_rows) == 0){
-            header("Location: http://localhost/forumApp/index.php");
+            die("Column or row not found.");
         }
     }
     else{
-        header("Location: http://localhost/forumApp/index.php");
+         die("Table parameter is not set.");
     }   
 ?>
 <div class="container">

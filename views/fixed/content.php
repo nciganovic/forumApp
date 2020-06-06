@@ -18,7 +18,7 @@
 
                 <?php else: ?>
 
-                    <?php header("Location: http://localhost/forumApp/index.php"); ?>
+                    <?php die("This page doesn't exist"); ?>
 
                 <?php endif ?>
 

@@ -3,10 +3,15 @@
     require_once "models/admin/get_col_names.php";
     require_once "models/admin/get_fk_data.php";
 
-    $all_col_names = get_col_names($pdo, $_GET["table"]);
+    if(isset($_GET["table"])){
+        $all_col_names = get_col_names($pdo, $_GET["table"]);
+    }
+    else{
+        die("Table parameter is not set.");
+    }
 
     if(count($all_col_names) == 0){
-        header("Location: http://localhost/forumApp/index.php");
+        die("This row doesn't exist.");
     }
 ?>
 

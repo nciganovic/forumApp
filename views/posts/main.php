@@ -7,7 +7,7 @@
         $first_n_posts = get_first_n_posts($_GET["ctg"], $limit, 0, "n", $pdo);
 
         if(count($first_n_posts) == 0){
-            header("Location: http://localhost/forumApp/index.php");
+            die("This categoery doesn't exist.");
         }
     }
     else{
