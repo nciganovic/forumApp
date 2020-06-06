@@ -22,7 +22,6 @@ define("EMAIL", env("EMAIL"));
 define("EMAIL_PSW", env("EMAIL_PSW"));
 
 function env($name){
-    // $podaci = explode("\n",file_get_contents(BASE_URL."/config/.env"));
     $open = fopen(ENV_FILE, "r");
     $data = file(ENV_FILE);
     $env_value = "";
