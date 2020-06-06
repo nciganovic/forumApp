@@ -63,7 +63,7 @@
 
         }
         else{
-            header("Location: http://localhost/forumApp/index.php");
+            die("This page doesn't exist");
         }
     
     //Pages that user sidebar   
